@@ -1,0 +1,125 @@
+body {
+  height: 100%;
+  margin: 0%;
+  padding: 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+body {
+  background-color: black;
+}
+
+/*Shared*/
+.titleTextSize {
+    font-size:4vw;
+}
+
+.specialFont {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/*Login Page*/
+
+.loginCreateAccountBtnTextSize {
+    font-size:0.8vw;
+}
+
+.signInButtonTextSize {
+    font-size:1vw;
+    width: 50%;
+}
+
+
+
+/*Registration Page*/
+
+.registrationTitleTextSize {
+    font-size:2vw;
+}
+
+.registrationButtonTextSize {
+    font-size:1vw;
+}
+
+.form {
+    width:30%;
+}
+
+.formInput {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  color: white;
+  background-color: rgba(256, 256, 256, 0.6);
+}
+
+.formInput:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.btnFade {
+  background-color: rgba(256, 256, 256, 0.1);
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  color: White;
+  border: 2px solid White;
+}
+
+.btnFade:hover {
+  background-color: rgba(256, 256, 256, 0.9);
+  color: black;
+}
+
+::placeholder {
+  font-size: 1.2em;
+}
+
+
+@media only screen and (max-width: 950px) {
+
+   /*Registration Page*/
+    .form {
+        width:40%;
+    }
+
+    .titleTextSize {
+        font-size:5vw;
+    }
+
+    .registrationTitleTextSize {
+        font-size:3vw;
+    }
+
+    .registrationButtonTextSize {
+        font-size:2vw;
+    }
+
+    /*Login Page*/
+
+    .signInButtonTextSize {
+        font-size:2vw;
+    }
+
+    .loginCreateAccountBtnTextSize {
+        font-size:1vw;
+    }
+}
+
+
+
+@media only screen and (max-width: 660px) {
+
+    /*Login Page*/
+
+    .signInButtonTextSize {
+        font-size:2vw;
+        width: 75%;
+    }
+
+    .loginCreateAccountBtnTextSize {
+        font-size:1.5vw;
+    }
+}
