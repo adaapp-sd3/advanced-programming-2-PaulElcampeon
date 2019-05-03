@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/general.css}"
+          href="../static/css/general.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<div class="text-center text-white my-5">
+    <h1 class="titleTextSize specialFont font-weight-normal">~FARM SIMULATION~</h1>
+</div>
+
+<div class="text-center text-white my-5">
+    <h1 class="registrationTitleTextSize specialFont my-5 text-white font-weight-normal">Please sign in</h1>
+</div>
+
+<div class="form mt-5 m-auto text-center">
+
+    <form th:action="@{/login}" th:object="${loginReqDto}" method="post" class="form-signin">
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="formInput form-control mb-3" th:field="*{username}" name="username"
+               placeholder="Username" required>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="formInput form-control" name="password" th:field="*{password}"
+               placeholder="Password" required>
+
+        <div class="checkbox mb-3 text-white">
+            <label>
+                <input type="checkbox" value="remember-me" name="remember-me" id="remeberMe"> Remember me
+            </label>
+        </div>
+
+        <div th:if="${param.error}">
+            <div class="alert alert-danger" name="errorMsg">
+                Invalid username or password.
+            </div>
+        </div>
+
+        <div th:if="${param.logout}">
+            <div class="alert alert-success" role="alert" name="logoutMsg">
+                Logged out successfully.
+            </div>
+        </div>
+
+        <div th:if="${param.created}">
+            <div class="alert alert-success" role="alert" name="createdMsg">
+                Account created successfully.
+            </div>
+        </div>
+
+        <button id="submitBtn" class="signInButtonTextSize specialFont btn btn-lg btn-block btnFade m-auto mb-5" name="submitButton" type="submit">Sign
+            in
+        </button>
+        <br>
+        <a th:href="@{/create-account}" class="specialFont loginCreateAccountBtnTextSize text-white btn btn-lg btn-block" name="createAccount">Create Account</a>
+
+        <p class="mt-5 mb-3 text-white">&copy; 2019-2020</p>
+
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Farm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/farm.css}"
+          href="../static/css/farm.css" type="text/css"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="https://pixijs.download/v5.0.0-rc.2/pixi.js"></script>
+    <script src="https://pixijs.download/v5.0.0-rc.2/pixi.js.map"></script>
+</head>
+
+<body>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        var farmName = /*[[${farmName}]]*/ null;
+        sessionStorage.setItem("farmName", farmName);
+        console.log(farmName);
+        function getFarmName() {
+            return farmName;
+        }
+    /*]]>*/
+    </script>
+    <div id="dashboard" class="dashDiv bg-dark text-center text-white specialFont box"></div>
+    <div id="farm" class="farmDiv box"></div>
+    <script src="/js/messages/messages.js"></script>
+    <script src="/js/requests/requests.js"></script>
+    <script src="/js/weather/rain.js"></script>
+    <script src="/js/weather/snow.js"></script>
+    <script src="/js/weather/weather.js"></script>
+    <script src="/js/options/marketOptions.js"></script>
+    <script src="/js/options/fieldOptions.js"></script>
+    <script src="/js/util/keyboard.js"></script>
+    <script src="/js/util/listeners.js"></script>
+    <script src="/js/models/Dashboard.js"></script>
+    <script src="/js/models/Farm.js"></script>
+    <script src="/js/general.js"></script>
+    <script src="/js/connection.js"></script>
+    <script src="/js/farm.js"></script>
+</body>
+</html>

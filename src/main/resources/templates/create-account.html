@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/general.css}"
+          href="../static/css/general.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+
+<body scroll="no">
+
+<div class="text-center text-white my-5">
+    <h1 class="titleTextSize specialFont font-weight-normal">~FARM SIMULATION~</h1>
+</div>
+
+<div class="text-center text-white my-5">
+    <h1 class="registrationTitleTextSize specialFont my-5 text-white font-weight-normal">User Registration Form</h1>
+</div>
+
+<div class="form mt-5 m-auto text-center">
+
+    <form style="justify-content: center;" th:action="@{/create-account}" th:object="${createNewAccountReqDto}"
+          method="post" class="form-signin">
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="formInput form-control mb-3" th:field="*{username}"
+               name="username"
+               placeholder="Username" required>
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"
+             name="errorMsg">
+            Username invalid
+        </div>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="formInput form-control mb-3" name="password"
+               th:field="*{password}"
+               placeholder="Password" required>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"
+             name="errorMsg">
+            Password invalid
+        </div>
+
+        <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+        <input type="password" id="inputConfirmPassword" class="formInput form-control mb-3" name="confirmPassword"
+               th:field="*{confirmPassword}" placeholder="Confirm Password" required>
+
+        <button id="submitBtn" class="registrationButtonTextSize specialFont btn btn-lg btn-block btnFade w-50 m-auto"
+                name="submitButton" type="submit">
+            Create
+        </button>
+
+        <p class="mt-5 mb-3 text-white">&copy; 2019-2020</p>
+
+    </form>
+</div>
+</body>
+</html>
