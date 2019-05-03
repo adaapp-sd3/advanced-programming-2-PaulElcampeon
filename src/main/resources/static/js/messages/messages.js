@@ -5,7 +5,7 @@ var messageTimeLength = 0;
 var style = new PIXI.TextStyle({
         fontFamily: 'Arial',
         fontSize: 24,
-        align: 'center'
+        align: 'center',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fill: ['#ffffff', '#00ff99'], // gradient
