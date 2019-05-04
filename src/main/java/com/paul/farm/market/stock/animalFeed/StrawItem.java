@@ -13,7 +13,7 @@ public class StrawItem extends MarketItem {
 
     @Override
     public boolean addToFarm(Farm farm) {
-        farm.setTotalStraw(farm.getTotalStraw() + 1);
+        farm.setTotalStraw(farm.getTotalStraw() + 1.0);
         farm.setBudget(farm.getBudget() - getBuyPrice());
         return true;
     }
@@ -22,7 +22,7 @@ public class StrawItem extends MarketItem {
     public boolean removeFromFarm(Farm farm) {
         if (farm.getTotalStraw() > 0) {
             farm.setBudget(farm.getBudget() + getSellPrice());
-            farm.setTotalStraw(farm.getTotalStraw() - 1);
+            farm.setTotalStraw(farm.getTotalStraw() - 1.0);
             return true;
         }
         return false;

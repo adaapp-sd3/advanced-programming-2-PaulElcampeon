@@ -61,9 +61,9 @@ class Dashboard {
         this.totalBeef.innerHTML = "Beef: " + data.totalBeef;
         this.totalWool.innerHTML = "Wool: " + data.totalWool;
         this.totalLamb.innerHTML = "Lamb: " + data.totalLamb;
-        this.totalStraw.innerHTML = "Straw: " + data.totalStraw;
+        this.totalStraw.innerHTML = "Straw: " + Math.round(data.totalStraw);
         this.totalBread.innerHTML = "Bread: " + data.totalBread;
-        this.totalCorn.innerHTML = "Corn: " + data.totalCorn;
+        this.totalCorn.innerHTML = "Corn: " + Math.round(data.totalCorn);
         this.totalWheat.innerHTML = "Wheat: " + data.totalWheat;
 
         this.animalTitle.innerHTML = "ANIMALS";
@@ -84,9 +84,9 @@ class Dashboard {
         this.totalBeef.innerHTML = "Beef: " + data.totalBeef;
         this.totalWool.innerHTML = "Wool: " + data.totalWool;
         this.totalLamb.innerHTML = "Lamb: " + data.totalLamb;
-        this.totalStraw.innerHTML = "Straw: " + data.totalStraw;
+        this.totalStraw.innerHTML = "Straw: " + Math.round(data.totalStraw);
         this.totalBread.innerHTML = "Bread: " + data.totalBread;
-        this.totalCorn.innerHTML = "Corn: " + data.totalCorn;
+        this.totalCorn.innerHTML = "Corn: " + Math.round(data.totalCorn);
         this.totalWheat.innerHTML = "Wheat: " + data.totalWheat;
         this.totalChickens.innerHTML = "Chicken: " + data.totalChickens;
         this.totalCows.innerHTML = "Cow: " + data.totalCows;
@@ -99,28 +99,6 @@ class Dashboard {
 
         getDashboardDiv().appendChild(this.budgetTitle);
         getDashboardDiv().appendChild(this.budget);
-
-//        getDashboardDiv().appendChild(this.seedsTitle);
-//        getDashboardDiv().appendChild(this.grassSeed);
-//        getDashboardDiv().appendChild(this.wheatSeed);
-//        getDashboardDiv().appendChild(this.cornSeed);
-//
-//        getDashboardDiv().appendChild(this.produceTitle);
-//
-//        getDashboardDiv().appendChild(this.totalMilk);
-//        getDashboardDiv().appendChild(this.totalEggs);
-//        getDashboardDiv().appendChild(this.totalBeef);
-//        getDashboardDiv().appendChild(this.totalWool);
-//        getDashboardDiv().appendChild(this.totalLamb);
-//        getDashboardDiv().appendChild(this.totalStraw);
-//        getDashboardDiv().appendChild(this.totalBread);
-//        getDashboardDiv().appendChild(this.totalCorn);
-//        getDashboardDiv().appendChild(this.totalWheat);
-//
-//        getDashboardDiv().appendChild(this.animalTitle);
-//        getDashboardDiv().appendChild(this.totalChickens);
-//        getDashboardDiv().appendChild(this.totalCows);
-//        getDashboardDiv().appendChild(this.totalSheep);
 
         this.div.appendChild(this.seedsTitle);
         this.div.appendChild(this.grassSeed);

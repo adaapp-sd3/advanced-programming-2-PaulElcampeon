@@ -11,6 +11,6 @@ public class CornBlossom implements  Blossom {
     @Override
     public void blossom(Farm farm, Crop crop) {
         crop.setBlossomed(true);
-        farm.setTotalCorn(farm.getTotalCorn() + 1);//when a corn plant blossoms we add 10 corn plants to our stock
+        farm.setTotalCorn(farm.getTotalCorn() + 1.0);//when a corn plant blossoms we add 10 corn plants to our stock
     }
 }

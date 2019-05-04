@@ -25,9 +25,9 @@ public class Farm {
     private int totalBeef;
     private int totalWool;
     private int totalLamb;
-    private int totalStraw;
+    private double totalStraw;
     private int totalBread;
-    private int totalCorn;
+    private double totalCorn;
     private int totalWheat;
     private int totalChickens;
     private int totalCows;

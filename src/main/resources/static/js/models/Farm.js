@@ -29,17 +29,7 @@ class Farm {
 
         data.animals.forEach(animal => {
             let animalSprite = new PIXI.Sprite.from("../images/animals/"+animal.breed+".png");
-            if (animal.growthLevel == 1) {
-                animalSprite.scale.set(0.3);
-            } else if (animal.growthLevel == 2) {
-                animalSprite.scale.set(0.4);
-            } else {
-               animalSprite.scale.set(0.6);
-            }
-
-            if (animal.hungerLevel < 30) {
-                animal.alpha = 0.3;
-            }
+            animalSprite = modifyAnimals(animal, animalSprite);
             animalSprite.x = animal.xpos;
             animalSprite.y = animal.ypos;
             newContainer.addChild(animalSprite);
@@ -53,6 +43,8 @@ class Farm {
             newContainer.addChild(cropSprite);
         })
 
+       playAnimalSounds(data);
+
         try {
             getStage().removeChildAt(1);
         } catch(err) {
@@ -61,4 +53,19 @@ class Farm {
 
         getStage().addChild(newContainer);
     }
+}
+
+function modifyAnimals(animal, animalSprite) {
+    if(animal.breed == "CHICKEN") {
+        animalSprite.scale.set(0.2);
+    } else if (animal.breed == "COW") {
+        animalSprite.scale.set(0.5);
+    } else {
+        animalSprite.scale.set(0.3);
+    }
+
+    if (animal.hungerLevel < 30) {
+        animalSprite.alpha = 0.7;
+    }
+    return animalSprite;
 }
