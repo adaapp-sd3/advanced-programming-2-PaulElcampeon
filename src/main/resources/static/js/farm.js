@@ -21,7 +21,10 @@ function setup() {
     setUpSprites();
     keyboardMovements();
     let slowDownWeatherEffect = 0
+
     getCurrentWeather();
+    window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins
+
     app.ticker.add((delta) => {
 
         if (!checkForCollision(farmer, stage)) {
