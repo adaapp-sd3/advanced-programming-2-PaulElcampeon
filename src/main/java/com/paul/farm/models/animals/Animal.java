@@ -5,7 +5,6 @@ import com.paul.farm.enums.Breed;
 import com.paul.farm.models.Farm;
 import com.paul.farm.models.animals.behaviour.dying.Deathable;
 import com.paul.farm.models.animals.behaviour.graze.Grazable;
-import com.paul.farm.models.animals.behaviour.growth.Growable;
 import com.paul.farm.models.animals.behaviour.maintenance.Maintainable;
 import com.paul.farm.models.animals.behaviour.maturity.Maturable;
 import com.paul.farm.models.animals.behaviour.move.Movable;
@@ -17,8 +16,7 @@ public abstract class Animal {
     private Breed breed;
     private int xPos;
     private int yPos;
-    private int hungerLevel = 100;
-    private int growthLevel = 1;
+    private double hungerLevel = 100;
     private long birthDate = System.currentTimeMillis();
     private boolean dead;
     private long nextMaintenance;
@@ -28,8 +26,6 @@ public abstract class Animal {
     private Maturable maturable;
     @JsonIgnore
     private int fieldIndex;
-    @JsonIgnore
-    private Growable growable = new Growable();
     @JsonIgnore
     private Deathable deathable = new Deathable();
     @JsonIgnore
