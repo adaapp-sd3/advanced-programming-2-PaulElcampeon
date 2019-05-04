@@ -11,9 +11,9 @@ public class CattleGrazable implements Grazable {
     public void graze(Farm farm, Animal animal) {
         if (farm.getTotalStraw() > 0) {
             animal.setHungerLevel(animal.getHungerLevel() + 1);
-            farm.setTotalStraw(farm.getTotalStraw() - 1);
+            farm.setTotalStraw(farm.getTotalStraw() - 0.01);
         } else {
-            animal.setHungerLevel(animal.getHungerLevel() - 1);
+            animal.setHungerLevel(animal.getHungerLevel() - 0.02);
         }
     }
 }

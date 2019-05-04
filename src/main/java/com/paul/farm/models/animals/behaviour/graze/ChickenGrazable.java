@@ -11,9 +11,9 @@ public class ChickenGrazable implements Grazable {
     public void graze(Farm farm, Animal animal) {
         if (farm.getTotalCorn() > 0) {
             animal.setHungerLevel(animal.getHungerLevel() + 1);
-            farm.setTotalCorn(farm.getTotalCorn() - 1);
+            farm.setTotalCorn(farm.getTotalCorn() - 0.02);
         } else {
-            animal.setHungerLevel(animal.getHungerLevel() - 1);
+            animal.setHungerLevel(animal.getHungerLevel() - 0.02);
         }
     }
 }
