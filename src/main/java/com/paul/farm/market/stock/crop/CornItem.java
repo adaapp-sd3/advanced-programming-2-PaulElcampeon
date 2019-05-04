@@ -13,7 +13,7 @@ public class CornItem extends MarketItem {
 
     @Override
     public boolean addToFarm(Farm farm) {
-        farm.setTotalCorn(farm.getTotalCorn() + 1);
+        farm.setTotalCorn(farm.getTotalCorn() + 1.0);
         farm.setBudget(farm.getBudget() - getBuyPrice());
         return true;
     }
@@ -22,7 +22,7 @@ public class CornItem extends MarketItem {
     public boolean removeFromFarm(Farm farm) {
         if (farm.getTotalCorn() > 0) {
             farm.setBudget(farm.getBudget() + getSellPrice());
-            farm.setTotalCorn(farm.getTotalCorn() - 1);
+            farm.setTotalCorn(farm.getTotalCorn() - 1.0);
             return true;
         }
         return false;
