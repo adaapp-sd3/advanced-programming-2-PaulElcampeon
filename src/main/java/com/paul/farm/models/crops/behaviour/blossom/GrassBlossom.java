@@ -11,6 +11,6 @@ public class GrassBlossom implements Blossom {
     @Override
     public void blossom(Farm farm, Crop crop) {
         crop.setBlossomed(true);
-        farm.setTotalStraw(farm.getTotalStraw() + 1);
+        farm.setTotalStraw(farm.getTotalStraw() + 1.0);
     }
 }
