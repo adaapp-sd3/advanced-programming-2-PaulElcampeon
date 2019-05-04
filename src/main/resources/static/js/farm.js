@@ -20,7 +20,7 @@ function setup() {
     connect();
     setUpSprites();
     keyboardMovements();
-    let slowDownWeatherEffect = 0
+    let slowDownWeatherEffect = 0;
 
     getCurrentWeather();
     window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins
@@ -123,12 +123,14 @@ function keyboardMovements() {
         farmer.texture = leftTractorTexture;
         farmer.vx = -5;
         farmer.vy = 0;
+        playTractorSound();
     };
 
     //Left arrow key `release` method
     left.release = () => {
         if (!right.isDown && farmer.vy === 0) {
             farmer.vx = 0;
+            decreaseTractorVolume();
         }
     };
 
@@ -136,10 +138,12 @@ function keyboardMovements() {
     up.press = () => {
         farmer.vy = -5;
         farmer.vx = 0;
+        playTractorSound();
     };
     up.release = () => {
         if (!down.isDown && farmer.vx === 0) {
             farmer.vy = 0;
+            decreaseTractorVolume();
         }
     };
 
@@ -148,10 +152,12 @@ function keyboardMovements() {
         farmer.texture = rightTractorTexture;
         farmer.vx = 5;
         farmer.vy = 0;
+        playTractorSound();
     };
     right.release = () => {
         if (!left.isDown && farmer.vy === 0) {
             farmer.vx = 0;
+            decreaseTractorVolume();
         }
     };
 
@@ -159,10 +165,12 @@ function keyboardMovements() {
     down.press = () => {
         farmer.vy = 5;
         farmer.vx = 0;
+        playTractorSound();
     };
     down.release = () => {
         if (!up.isDown && farmer.vx === 0) {
             farmer.vy = 0;
+            decreaseTractorVolume();
         }
     };
 }

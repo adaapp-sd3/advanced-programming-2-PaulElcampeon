@@ -7,6 +7,7 @@ function getWeather() {
 
 function setWeather(newWeather) {
     weather = newWeather.toLowerCase();
+    playWeatherSound();
 }
 
 function getWeatherContainer() {
@@ -14,7 +15,6 @@ function getWeatherContainer() {
 }
 
 function produceWeather() {
-
     if (getWeather() == "clear") {
         clearWeather();
     } else if (getWeather() == "rain") {
@@ -24,7 +24,6 @@ function produceWeather() {
     }
 }
 
-
 function clearWeather() {
     if (getWeatherContainer().children != 0) {
         try {
@@ -33,5 +32,18 @@ function clearWeather() {
         } catch (err) {
             console.log("Rain container has no children opps");
         }
+    }
+}
+
+function playWeatherSound() {
+    if (getWeather() == "clear") {
+        playClearSound();
+        decreaseRainVolume();
+    } else if (getWeather() == "rain") {
+        playRainSound();
+        decreaseClearVolume();
+    } else if (getWeather() == "snow") {
+        decreaseClearVolume();
+        decreaseRainVolume();
     }
 }
