@@ -19,7 +19,7 @@ public class SheepItem extends MarketItem {
     @Override
     public boolean addToFarm(Farm farm) {
         for (int i = 0; i < farm.getFields().size(); i++) {
-            if (farm.getFields().get(i) instanceof GrazingField && farm.getFields().get(i).getNoOfAnimals() < 20) {
+            if (farm.getFields().get(i) instanceof GrazingField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalCows() < 100) ||  farm.getFields().get(i) instanceof PettingFarmField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalSheep() < 100)) {
                 farm.setTotalSheep(farm.getTotalSheep() + 1);
                 farm.setBudget(farm.getBudget() - getBuyPrice());
                 Sheep sheep = new Sheep();

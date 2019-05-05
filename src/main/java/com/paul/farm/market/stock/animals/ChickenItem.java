@@ -18,7 +18,7 @@ public class ChickenItem extends MarketItem {
     @Override
     public boolean addToFarm(Farm farm) {
         for (int i = 0; i < farm.getFields().size(); i++) {
-            if (farm.getFields().get(i) instanceof GrazingField && farm.getFields().get(i).getNoOfAnimals() < 20) {
+            if (farm.getFields().get(i) instanceof GrazingField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalCows() < 100) ||  farm.getFields().get(i) instanceof PettingFarmField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalChickens() < 100)) {
                 farm.setTotalChickens(farm.getTotalChickens() + 1);
                 farm.setBudget(farm.getBudget() - getBuyPrice());
                 Chicken chicken = new Chicken();
@@ -45,7 +45,6 @@ public class ChickenItem extends MarketItem {
                     break;
                 }
             }
-
             farm.getAnimals().remove(chicken);
             return true;
         }

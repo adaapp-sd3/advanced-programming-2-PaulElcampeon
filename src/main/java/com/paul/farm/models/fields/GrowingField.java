@@ -1,6 +1,7 @@
 package com.paul.farm.models.fields;
 
 import com.paul.farm.enums.FieldType;
+import com.paul.farm.models.Farm;
 import com.paul.farm.models.crops.Crop;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @Data
 public class GrowingField extends Field {
@@ -27,5 +29,10 @@ public class GrowingField extends Field {
         Crop crop = (Crop) object;
         crop.setXPos(ThreadLocalRandom.current().nextInt(this.getXPos() + 1, this.getXPos() + this.getWidth() - 20));
         crop.setYPos(ThreadLocalRandom.current().nextInt(this.getYPos() + 1, this.getYPos() + this.getHeight() - 20));
+    }
+
+    @Override
+    public void clearField(Farm farm, int indexOfField) {
+        farm.setCrops(farm.getCrops().stream().filter(crop -> crop.getIndexOfField() != indexOfField).collect(Collectors.toList()));
     }
 }

@@ -36,6 +36,7 @@ public class FarmModification {
                 farmModificationRequestDto.getFieldIndex()));
         Farm farm = farmService.getFarm(farmModificationRequestDto.getFarmName());
         Field previousField = farm.getFields().get(farmModificationRequestDto.getFieldIndex());
+        previousField.clearField(farm, farmModificationRequestDto.getFieldIndex());
         PettingFarmField pettingFarmField = new PettingFarmField(previousField.getXPos(), previousField.getYPos());
         farm.getFields().add(farmModificationRequestDto.getFieldIndex(), pettingFarmField);
         farm.getFields().remove(farmModificationRequestDto.getFieldIndex() + 1);
@@ -49,6 +50,7 @@ public class FarmModification {
                 farmModificationRequestDto.getFieldIndex()));
         Farm farm = farmService.getFarm(farmModificationRequestDto.getFarmName());
         Field previousField = farm.getFields().get(farmModificationRequestDto.getFieldIndex());
+        previousField.clearField(farm, farmModificationRequestDto.getFieldIndex());
         GrazingField grazingField = new GrazingField(previousField.getXPos(), previousField.getYPos());
         farm.getFields().add(farmModificationRequestDto.getFieldIndex(), grazingField);
         farm.getFields().remove(farmModificationRequestDto.getFieldIndex() + 1);
@@ -62,6 +64,7 @@ public class FarmModification {
                 farmModificationRequestDto.getFieldIndex()));
         Farm farm = farmService.getFarm(farmModificationRequestDto.getFarmName());
         Field previousField = farm.getFields().get(farmModificationRequestDto.getFieldIndex());
+        previousField.clearField(farm, farmModificationRequestDto.getFieldIndex());
         GrowingField growingField = new GrowingField(previousField.getXPos(), previousField.getYPos());
         farm.getFields().add(farmModificationRequestDto.getFieldIndex(), growingField);
         farm.getFields().remove(farmModificationRequestDto.getFieldIndex() + 1);

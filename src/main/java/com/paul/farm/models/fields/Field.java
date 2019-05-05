@@ -1,6 +1,7 @@
 package com.paul.farm.models.fields;
 
 import com.paul.farm.enums.FieldType;
+import com.paul.farm.models.Farm;
 import com.paul.farm.models.position.Point;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,8 @@ public abstract class Field {
     private int height = 200;
 
     public abstract void addToField(Object object);
+
+    public abstract void clearField(Farm farm, int indexOfField);
 
     public Field() {
     }
