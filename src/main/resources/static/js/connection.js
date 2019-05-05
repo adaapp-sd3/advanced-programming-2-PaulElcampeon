@@ -16,6 +16,10 @@ function connect() {
             handleErrorMessage(JSON.parse(data.body));
         });
 
+        stompClient.subscribe('/topic/farm/tourists/' + getFarmName(), function (data) {
+            handleTourists(JSON.parse(data.body));
+        });
+
         stompClient.send("/app/farm/get/" + getFarmName(), {},);
 
     }, function (error) {
@@ -31,4 +35,8 @@ function handleIncomingResponse(data) {
 
 function handleErrorMessage(data) {
     setMessage(data.message);
+}
+
+function handleTourists(data) {
+    setTouristList(data);
 }
