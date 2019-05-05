@@ -16,11 +16,27 @@ PIXI.loader.load(setup);
 var farmer, market, leftTractorTexture, rightTractorTexture, marketTexture;
 
 function setup() {
+    //preload stuff
+    createFields();
+    createAnimals();
+    createCrops();
+    createVisitors();
+    createRainAnimation();
+    createSnowAnimation();
+
+    //render green field
     initBackground();
+
+    //connect to server through socket
     connect();
-    setUpSprites();
+    
+    setUpTractorAndMarketSprite();
+
     keyboardMovements();
+
     let slowDownWeatherEffect = 0;
+
+    window.setInterval(getMemoryInfo, 10000);//get memory info every 10 seconds
 
     getCurrentWeather();
     window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins
@@ -94,7 +110,7 @@ function checkForCollisionOnBottomSide(entity1, entity2) {
     return false;
 }
 
-function setUpSprites() {
+function setUpTractorAndMarketSprite() {
     leftTractorTexture = new PIXI.Texture.from("../images/farmerLeft.png");
     rightTractorTexture = new PIXI.Texture.from("../images/farmerRight.png");
     marketTexture = new PIXI.Texture.from("../images/building/market.png");
@@ -173,4 +189,8 @@ function keyboardMovements() {
             decreaseTractorVolume();
         }
     };
+}
+
+function getMemoryInfo() {
+    console.log(window.performance.memory);
 }

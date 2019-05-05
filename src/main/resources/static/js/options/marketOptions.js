@@ -1,3 +1,5 @@
+const marketOptions = getMarketOptions();
+
 function getMarketOptions() {
     let marketDiv = document.createElement("div");
     let buyAndSellSection = getBuyAndSellSection();
@@ -78,8 +80,6 @@ function getBuyAndSellOption(item, option, sellPrice, buyPrice) {
 
     return buyAndSellOptionDiv;
 }
-
-const marketOptions = getMarketOptions();
 
 function getMarketOptions1() {
     return marketOptions;

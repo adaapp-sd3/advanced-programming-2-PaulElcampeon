@@ -1,5 +1,5 @@
-var messageContainer = new PIXI.Container();
-var messageText = new PIXI.Text();
+const messageContainer = new PIXI.Container();
+const messageText = new PIXI.Text();
 var messageTimeLength = 0;
 
 var style = new PIXI.TextStyle({
