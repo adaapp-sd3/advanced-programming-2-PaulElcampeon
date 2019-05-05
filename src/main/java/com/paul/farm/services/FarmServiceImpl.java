@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -71,5 +72,10 @@ public class FarmServiceImpl implements FarmService {
         Farm farm = getFarm(id);
         farm.setOnline(false);
         updateFarm(farm);
+    }
+
+    @Override
+    public List<Farm> getAllOnlineFarms() {
+        return farmRepository.findByOnline(true);
     }
 }

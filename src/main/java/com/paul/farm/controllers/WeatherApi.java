@@ -45,8 +45,9 @@ public class WeatherApi {
             setWeather("rain");
         } else if (retrievedWeather.equals("snow")) {
             setWeather(retrievedWeather);
-        } else if (retrievedWeather.equals("clouds")) {
-            setWeather(retrievedWeather);
+        } else if (retrievedWeather.equals("clouds")) {//no animation for clouds so we will just use clear
+//            setWeather(retrievedWeather);
+            setWeather("clear");
         } else {
             setWeather("clear");
         }

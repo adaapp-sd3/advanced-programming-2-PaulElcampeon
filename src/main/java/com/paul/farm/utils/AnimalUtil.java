@@ -28,32 +28,32 @@ public class AnimalUtil {
     }
 
     public static void moveLeft(Animal animal, Field field) {
-        if (animal.getXPos() - 3 <= field.getXPos()) {
-            animal.setXPos(animal.getXPos());
+        if (animal.getXPos() - 5 <= field.getXPos()) {
+            animal.setXPos(animal.getXPos() - 2);
         } else {
             animal.setXPos(animal.getXPos() - 3);
         }
     }
 
     public static void moveRight(Animal animal, Field field) {
-        if (animal.getXPos() + 3 >= field.getXPos() + field.getWidth()) {
-            animal.setXPos(animal.getXPos());
+        if (animal.getXPos() + 40 >= field.getXPos() + field.getWidth()) {
+            animal.setXPos(animal.getXPos() - 2);
         } else {
             animal.setXPos(animal.getXPos() + 3);
         }
     }
 
     public static void moveUp(Animal animal, Field field) {
-        if (animal.getYPos() - 3 <= field.getYPos()) {
-            animal.setYPos(animal.getYPos());
+        if (animal.getYPos() - 5 <= field.getYPos()) {
+            animal.setYPos(animal.getYPos() - 2);
         } else {
             animal.setYPos(animal.getYPos() - 3);
         }
     }
 
     public static void moveDown(Animal animal, Field field) {
-        if (animal.getYPos() + 3 >= field.getYPos() + field.getHeight()) {
-            animal.setYPos(animal.getYPos());
+        if (animal.getYPos() + 40 >= field.getYPos() + field.getHeight()) {
+            animal.setYPos(animal.getYPos() - 2);
         } else {
             animal.setYPos(animal.getYPos() + 3);
         }

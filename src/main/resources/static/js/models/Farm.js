@@ -3,69 +3,89 @@ class Farm {
     }
 
     render(data) {
-
-        let newContainer = new PIXI.Container();
+        try {
+            getFarmContainer().removeChildren(0, getFarmContainer().children.length);
+        } catch (err) {
+            console.log("Cannot remove children in farm container as there are no children there");
+        }
 
         let indexOfFields = 0;
+        let pettingFarmFields = 0;
+        let growingFields = 0;
+        let grazzingFields = 0;
         data.fields.forEach(field => {
-            let newField = new PIXI.Graphics();
-            newField.name = field.fieldType;
-            newField.lineStyle(10, 0x7c4011, 1);
             if (field.fieldType == "GROWING") {
-                newField.beginFill(0xb58969, 1);
+                getGrowingFields()[growingFields].x = field.xpos;
+                getGrowingFields()[growingFields].y = field.ypos;
+                fieldListener(getGrowingFields()[growingFields], getFarmer(), indexOfFields);
+                getFarmContainer().addChild(getGrowingFields()[growingFields]);
+                growingFields++;
             } else if (field.fieldType == "GRAZZING") {
-                newField.beginFill(0x66CD00, 1);
+                getGrazzingFields()[grazzingFields].x = field.xpos;
+                getGrazzingFields()[grazzingFields].y = field.ypos;
+                fieldListener(getGrazzingFields()[grazzingFields], getFarmer(), indexOfFields);
+                getFarmContainer().addChild(getGrazzingFields()[grazzingFields]);
+                grazzingFields++;
             } else {
-                newField.beginFill(0xDEB887, 1);
+                getPettingFarmFields()[pettingFarmFields].x = field.xpos;
+                getPettingFarmFields()[pettingFarmFields].y = field.ypos;
+                fieldListener(getPettingFarmFields()[pettingFarmFields], getFarmer(), indexOfFields);
+                getFarmContainer().addChild(getPettingFarmFields()[pettingFarmFields]);
+                pettingFarmFields++;
             }
-            newField.drawRoundedRect(field.xpos, field.ypos, field.width, field.height, 16);
-            newField.endFill();
-            fieldListener(newField, getFarmer(), indexOfFields)
-            newContainer.addChild(newField);
             indexOfFields++;
         })
 
         checkIfFarmerIsPresentOnFields(data.fields, getFarmer());
 
+        let cow = 0;
+        let sheep = 0;
+        let chicken = 0;
         data.animals.forEach(animal => {
-            let animalSprite = new PIXI.Sprite.from("../images/animals/"+animal.breed+".png");
-            animalSprite = modifyAnimals(animal, animalSprite);
-            animalSprite.x = animal.xpos;
-            animalSprite.y = animal.ypos;
-            newContainer.addChild(animalSprite);
+            if (animal.breed == "COW") {
+                getCows()[cow].x = animal.xpos;
+                getCows()[cow].y = animal.ypos;
+                getFarmContainer().addChild(getCows()[cow]);
+                cow++;
+            } else if (animal.breed == "SHEEP") {
+                getSheeps()[sheep].x = animal.xpos;
+                getSheeps()[sheep].y = animal.ypos;
+                getFarmContainer().addChild(getSheeps()[sheep]);
+                sheep++;
+            } else {//must be chicken
+                getChickens()[chicken].x = animal.xpos;
+                getChickens()[chicken].y = animal.ypos;
+                getFarmContainer().addChild(getChickens()[chicken]);
+                chicken++;
+            }
         })
 
+        let corn = 0;
+        let grass = 0;
+        let wheat = 0;
         data.crops.forEach(crop => {
-            let cropSprite = new PIXI.Sprite.from("../images/crops/"+crop.cropType+".png");
-            cropSprite.scale.set(0.3);
-            cropSprite.x = crop.xpos;
-            cropSprite.y = crop.ypos;
-            newContainer.addChild(cropSprite);
+            if (crop.cropType == "GRASS") {
+                getGrass()[grass].x = crop.xpos;
+                getGrass()[grass].y = crop.ypos;
+                getFarmContainer().addChild(getGrass()[grass]);
+                grass++;
+            } else if (crop.cropType == "WHEAT") {
+                getWheat()[wheat].x = crop.xpos;
+                getWheat()[wheat].y = crop.ypos;
+                getFarmContainer().addChild(getWheat()[wheat]);
+                wheat++;
+            } else {//must be corn
+                getCorn()[corn].x = crop.xpos;
+                getCorn()[corn].y = crop.ypos;
+                getFarmContainer().addChild(getCorn()[corn]);
+                corn++;
+            }
         })
 
-       playAnimalSounds(data);
+        playAnimalSounds(data);
 
-        try {
-            getStage().removeChildAt(1);
-        } catch(err) {
-            console.log(err);
-        }
+        getStage().addChild(getFarmContainer());
 
-        getStage().addChild(newContainer);
+        renderTourists();
     }
-}
-
-function modifyAnimals(animal, animalSprite) {
-    if(animal.breed == "CHICKEN") {
-        animalSprite.scale.set(0.2);
-    } else if (animal.breed == "COW") {
-        animalSprite.scale.set(0.5);
-    } else {
-        animalSprite.scale.set(0.3);
-    }
-
-    if (animal.hungerLevel < 30) {
-        animalSprite.alpha = 0.7;
-    }
-    return animalSprite;
 }
