@@ -38,6 +38,12 @@
             Username invalid
         </div>
 
+        <div th:if="${param.error}">
+            <div class="alert alert-danger" name="errorMsg">
+                Username already in use
+            </div>
+        </div>
+
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="formInput form-control mb-3" name="password"
                th:field="*{password}"
