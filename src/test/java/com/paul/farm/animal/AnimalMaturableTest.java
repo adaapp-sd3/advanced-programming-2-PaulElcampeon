@@ -5,6 +5,7 @@ import com.paul.farm.models.animals.Animal;
 import com.paul.farm.models.animals.Cow;
 import com.paul.farm.models.fields.GrazingField;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
+@Ignore
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)
 public class AnimalMaturableTest {
