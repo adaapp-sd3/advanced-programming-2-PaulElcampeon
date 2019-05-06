@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class CreateNewAccountController {
@@ -21,13 +23,15 @@ public class CreateNewAccountController {
     @Autowired
     private FarmService farmService;
 
+    private Logger loggger = Logger.getLogger(CreateNewAccountController.class.getName());
+
     @RequestMapping(value = "/create-account", method = RequestMethod.POST)
     public String createAccount(@ModelAttribute @Valid CreateNewAccountReqDto createNewAccountReqDto, BindingResult result) {
 
         if (result.hasErrors()) {
+            loggger.log(Level.INFO, String.format("%s requested to create a new account but details were rejected", createNewAccountReqDto.getUsername()));
             return "/create-account";
         }
-
         userService.createNewUser(createNewAccountReqDto);
         farmService.createFarm(createNewAccountReqDto.getUsername());
         return "redirect:/login";
