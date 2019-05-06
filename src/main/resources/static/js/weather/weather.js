@@ -37,10 +37,10 @@ function clearWeather() {
 
 function playWeatherSound() {
     if (getWeather() == "clear") {
-        playClearSound();
+        playClearWeatherSound();
         decreaseRainVolume();
     } else if (getWeather() == "rain") {
-        playRainSound();
+        playRainWeatherSound();
         decreaseClearVolume();
     } else if (getWeather() == "snow") {
         decreaseClearVolume();

@@ -8,35 +8,25 @@ canvas.classList.add('forCanvas');
 frameDiv.appendChild(canvas);
 
 const stage = app.stage;
-const loader = PIXI.loader;
-const resources = loader.resources;
 
-PIXI.loader.load(setup);
+//preload stuff
+Promise.all([createFields(), createAnimals(), createCrops(), createVisitors(), createRainAnimation(), createSnowAnimation()])
+    .then(()=>{
+        initBackground();
+        createTractorAndMarketSprite();
+        connect();
+        setup();
+    });
 
 var farmer, market, leftTractorTexture, rightTractorTexture, marketTexture;
 
 function setup() {
-    //preload stuff
-    createFields();
-    createAnimals();
-    createCrops();
-    createVisitors();
-    createRainAnimation();
-    createSnowAnimation();
-
-    //render green field
-    initBackground();
-
-    //connect to server through socket
-    connect();
-    
-    setUpTractorAndMarketSprite();
 
     keyboardMovements();
 
     let slowDownWeatherEffect = 0;
 
-    window.setInterval(getMemoryInfo, 10000);//get memory info every 10 seconds
+    window.setInterval(getMemoryInfo, 300000);//get memory info every 5 mins
 
     getCurrentWeather();
     window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins
@@ -108,23 +98,6 @@ function checkForCollisionOnBottomSide(entity1, entity2) {
         return true;
     }
     return false;
-}
-
-function setUpTractorAndMarketSprite() {
-    leftTractorTexture = new PIXI.Texture.from("../images/farmerLeft.png");
-    rightTractorTexture = new PIXI.Texture.from("../images/farmerRight.png");
-    marketTexture = new PIXI.Texture.from("../images/building/market.png");
-    farmer = new PIXI.Sprite(leftTractorTexture);
-    market = new PIXI.Sprite(marketTexture);
-    market.name = "market";
-    farmer.name = "farmer";
-    market.x = 550;
-    market.y = 650;
-    farmer.x = 100;
-    farmer.y = 100;
-    farmer.vx = 0;
-    farmer.vy = 0;
-    farmer.scale.set(0.3);
 }
 
 function keyboardMovements() {

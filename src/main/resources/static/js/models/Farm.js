@@ -3,17 +3,17 @@ class Farm {
     }
 
     render(data) {
+
         try {
             getFarmContainer().removeChildren(0, getFarmContainer().children.length);
         } catch (err) {
             console.log("Cannot remove children in farm container as there are no children there");
         }
 
-        let indexOfFields = 0;
         let pettingFarmFields = 0;
         let growingFields = 0;
         let grazzingFields = 0;
-        data.fields.forEach(field => {
+        data.fields.forEach((field, indexOfFields) => {
             if (field.fieldType == "GROWING") {
                 getGrowingFields()[growingFields].x = field.xpos;
                 getGrowingFields()[growingFields].y = field.ypos;
@@ -33,7 +33,6 @@ class Farm {
                 getFarmContainer().addChild(getPettingFarmFields()[pettingFarmFields]);
                 pettingFarmFields++;
             }
-            indexOfFields++;
         })
 
         checkIfFarmerIsPresentOnFields(data.fields, getFarmer());

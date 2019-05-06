@@ -1,9 +1,10 @@
-package com.paul.farm.tourism;
+package com.paul.farm.models.tourist;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paul.farm.models.Farm;
 import com.paul.farm.models.animals.Animal;
 import com.paul.farm.models.fields.Field;
+import com.paul.farm.models.tourist.behaviour.LeaveFarm;
 import com.paul.farm.utils.AnimalUtil;
 import lombok.Data;
 

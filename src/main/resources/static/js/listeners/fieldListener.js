@@ -1,29 +1,13 @@
+var indexOfField;
+
 const fieldListener = (field, farmer, indexOfField) => {
     if (farmer.x >= field.getBounds().x && farmer.x <= field.getBounds().x + field.getBounds().width && farmer.y <= field.getBounds().y + field.getBounds().height && farmer.y >=  field.getBounds().y) {
-        console.log("You are driving on me, my index is " + indexOfField);
         setIndexOfField(indexOfField);
     }
 }
 
-const marketListener = (market, farmer) => {
-    if (farmer.x + farmer.width >= market.x && farmer.x <= market.x + market.width && farmer.y <= market.y + market.height && farmer.y >=  market.y - 30) {
-        console.log("You have entered the market");
-        if (!getMarketSound().playing()) {
-            playMarketSound();
-        }
-        return true;
-    }
-    if (getMarketSound().playing()) {
-        decreaseMarketVolume();
-    }
-    return false
-}
-
-var indexOfField;
-
 function setIndexOfField(number) {
     indexOfField = number;
-    console.log("Index of field has been set to " + number);
 }
 
 function getIndexOfField() {

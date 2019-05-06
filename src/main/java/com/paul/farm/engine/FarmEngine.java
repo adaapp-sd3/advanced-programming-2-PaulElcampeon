@@ -2,7 +2,7 @@ package com.paul.farm.engine;
 
 import com.paul.farm.enums.FieldType;
 import com.paul.farm.models.Farm;
-import com.paul.farm.tourism.TourismRevenue;
+import com.paul.farm.tourismBank.TourismBank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class FarmEngine {
 
     @Autowired
-    private TourismRevenue tourismRevenue;
+    private TourismBank tourismBank;
 
     public void process(Farm farm) {
         farm.setCrops(farm.getCrops().stream().map(crop -> {
@@ -31,8 +31,8 @@ public class FarmEngine {
         }).filter(animal -> !animal.isDead()).collect(Collectors.toList()));
 
         if (farm.containsFieldWithAnimals(FieldType.PETTINGFARM)) {
-            tourismRevenue.addFarmWallet(farm);
-            tourismRevenue.collectMoneyFromWallet(farm);
+            tourismBank.addFarmWallet(farm);
+            tourismBank.collectMoneyFromWallet(farm);
         }
 
         farm.updateAnimalCount();

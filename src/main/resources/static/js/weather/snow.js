@@ -4,7 +4,7 @@ function produceSnow() {
         getStage().removeChild(getWeatherContainer());
         getWeatherContainer().removeChildren(0, getWeatherContainer().children.length);
     } catch (err) {
-        console.log("Rain container has no children opps");
+        console.log("Snow container has no children");
     }
     getWeatherContainer().addChild(getSnowAnimations()[snowFrame]);
     getStage().addChild(getWeatherContainer());

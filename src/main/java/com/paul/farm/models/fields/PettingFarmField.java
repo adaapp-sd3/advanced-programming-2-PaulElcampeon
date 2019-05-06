@@ -3,11 +3,9 @@ package com.paul.farm.models.fields;
 import com.paul.farm.enums.FieldType;
 import com.paul.farm.models.Farm;
 import com.paul.farm.models.animals.Animal;
-import com.paul.farm.tourism.Tourist;
+import com.paul.farm.models.tourist.Tourist;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 

@@ -1,5 +1,6 @@
-package com.paul.farm.tourism;
+package com.paul.farm.models.tourist.behaviour;
 
+import com.paul.farm.models.tourist.Tourist;
 import lombok.Data;
 
 @Data

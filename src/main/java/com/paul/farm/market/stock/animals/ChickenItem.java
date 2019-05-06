@@ -3,7 +3,6 @@ package com.paul.farm.market.stock.animals;
 import com.paul.farm.market.stock.MarketItem;
 import com.paul.farm.models.Farm;
 import com.paul.farm.models.animals.Chicken;
-import com.paul.farm.models.fields.Field;
 import com.paul.farm.models.fields.GrazingField;
 import com.paul.farm.models.fields.PettingFarmField;
 import lombok.Data;
@@ -17,19 +16,21 @@ public class ChickenItem extends MarketItem {
 
     @Override
     public boolean addToFarm(Farm farm) {
-        for (int i = 0; i < farm.getFields().size(); i++) {
-            if (farm.getFields().get(i) instanceof GrazingField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalCows() < 100) ||  farm.getFields().get(i) instanceof PettingFarmField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalChickens() < 100)) {
-                farm.setTotalChickens(farm.getTotalChickens() + 1);
-                farm.setBudget(farm.getBudget() - getBuyPrice());
-                Chicken chicken = new Chicken();
-                chicken.setFieldIndex(i);
-                farm.getFields().get(i).setNoOfAnimals(farm.getFields().get(i).getNoOfAnimals() + 1);
-                farm.getFields().get(i).addToField(chicken);
-                farm.getAnimals().add(chicken);
-                return true;
-            }
-        }
-        return false;
+        return farm.getFields()
+                .stream()
+                .filter(field -> field instanceof GrazingField && (field.getNoOfAnimals() < 20 && farm.getTotalChickens() < 100) || field instanceof PettingFarmField && (field.getNoOfAnimals() < 20 && farm.getTotalChickens() < 100))
+                .findFirst()
+                .map(field -> {
+                    farm.setTotalChickens(farm.getTotalChickens() + 1);
+                    farm.setBudget(farm.getBudget() - getBuyPrice());
+                    Chicken chicken = new Chicken();
+                    chicken.setFieldIndex(farm.getFields().indexOf(field));
+                    field.setNoOfAnimals(field.getNoOfAnimals() + 1);
+                    field.addToField(chicken);
+                    farm.getAnimals().add(chicken);
+                    return true;
+                })
+                .orElse(false);
     }
 
     @Override
@@ -37,16 +38,16 @@ public class ChickenItem extends MarketItem {
         if (farm.getTotalChickens() > 0) {
             farm.setTotalChickens(farm.getTotalChickens() - 1);
             farm.setBudget(farm.getBudget() + getSellPrice());
-            Chicken chicken = null;
-            for (int i = 0; i < farm.getAnimals().size(); i++) {
-                if (farm.getAnimals().get(i) instanceof Chicken) {
-                    chicken = (Chicken) farm.getAnimals().get(i);
-                    farm.getFields().get(chicken.getFieldIndex()).setNoOfAnimals(farm.getFields().get(chicken.getFieldIndex()).getNoOfAnimals() - 1);
-                    break;
-                }
-            }
-            farm.getAnimals().remove(chicken);
-            return true;
+            return farm.getAnimals()
+                    .stream()
+                    .filter(animal -> animal instanceof Chicken)
+                    .findFirst()
+                    .map(animal -> {
+                        farm.getAnimals().remove(animal);
+                        farm.getFields().get(animal.getFieldIndex()).setNoOfAnimals(farm.getFields().get(animal.getFieldIndex()).getNoOfAnimals() - 1);
+                        return true;
+                    })
+                    .orElse(false);
         }
         return false;
     }
