@@ -18,19 +18,21 @@ public class SheepItem extends MarketItem {
 
     @Override
     public boolean addToFarm(Farm farm) {
-        for (int i = 0; i < farm.getFields().size(); i++) {
-            if (farm.getFields().get(i) instanceof GrazingField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalCows() < 100) ||  farm.getFields().get(i) instanceof PettingFarmField && (farm.getFields().get(i).getNoOfAnimals() < 20 && farm.getTotalSheep() < 100)) {
-                farm.setTotalSheep(farm.getTotalSheep() + 1);
-                farm.setBudget(farm.getBudget() - getBuyPrice());
-                Sheep sheep = new Sheep();
-                sheep.setFieldIndex(i);
-                farm.getFields().get(i).setNoOfAnimals(farm.getFields().get(i).getNoOfAnimals() + 1);
-                farm.getFields().get(i).addToField(sheep);
-                farm.getAnimals().add(sheep);
-                return true;
-            }
-        }
-        return false;
+        return farm.getFields()
+                .stream()
+                .filter(field -> field instanceof GrazingField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100) || field instanceof PettingFarmField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100))
+                .findFirst()
+                .map(field -> {
+                    farm.setTotalSheep(farm.getTotalSheep() + 1);
+                    farm.setBudget(farm.getBudget() - getBuyPrice());
+                    Sheep sheep = new Sheep();
+                    sheep.setFieldIndex(farm.getFields().indexOf(field));
+                    field.setNoOfAnimals(field.getNoOfAnimals() + 1);
+                    field.addToField(sheep);
+                    farm.getAnimals().add(sheep);
+                    return true;
+                })
+                .orElse(false);
     }
 
     @Override
@@ -38,16 +40,16 @@ public class SheepItem extends MarketItem {
         if (farm.getTotalSheep() > 0) {
             farm.setTotalSheep(farm.getTotalSheep() - 1);
             farm.setBudget(farm.getBudget() + getSellPrice());
-            Sheep sheep = null;
-            for (int i = 0; i < farm.getAnimals().size(); i++) {
-                if (farm.getAnimals().get(i) instanceof Sheep) {
-                    sheep = (Sheep) farm.getAnimals().get(i);
-                    farm.getFields().get(sheep.getFieldIndex()).setNoOfAnimals(farm.getFields().get(sheep.getFieldIndex()).getNoOfAnimals() - 1);
-                    break;
-                }
-            }
-            farm.getAnimals().remove(sheep);
-            return true;
+            return farm.getAnimals()
+                    .stream()
+                    .filter(animal -> animal instanceof Sheep)
+                    .findFirst()
+                    .map(animal -> {
+                        farm.getAnimals().remove(animal);
+                        farm.getFields().get(animal.getFieldIndex()).setNoOfAnimals(farm.getFields().get(animal.getFieldIndex()).getNoOfAnimals() - 1);
+                        return true;
+                    })
+                    .orElse(false);
         }
         return false;
     }
