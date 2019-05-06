@@ -8,35 +8,25 @@ canvas.classList.add('forCanvas');
 frameDiv.appendChild(canvas);
 
 const stage = app.stage;
-const loader = PIXI.loader;
-const resources = loader.resources;
 
-PIXI.loader.load(setup);
+//preload stuff
+Promise.all([createFields(), createAnimals(), createCrops(), createVisitors(), createRainAnimation(), createSnowAnimation()])
+    .then(()=>{
+        initBackground();
+        setUpTractorAndMarketSprite();
+        connect();
+        setup();
+    });
 
 var farmer, market, leftTractorTexture, rightTractorTexture, marketTexture;
 
 function setup() {
-    //preload stuff
-    createFields();
-    createAnimals();
-    createCrops();
-    createVisitors();
-    createRainAnimation();
-    createSnowAnimation();
-
-    //render green field
-    initBackground();
-
-    //connect to server through socket
-    connect();
-    
-    setUpTractorAndMarketSprite();
 
     keyboardMovements();
 
     let slowDownWeatherEffect = 0;
 
-    window.setInterval(getMemoryInfo, 10000);//get memory info every 10 seconds
+    window.setInterval(getMemoryInfo, 300000);//get memory info every 5 mins
 
     getCurrentWeather();
     window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins

@@ -50,49 +50,61 @@ function getCorn() {
 }
 
 function createFields() {
-    for (let i = 0; i < 5; i++) {
-        getGrowingFields().push(createFieldStash("GROWING", 0xb58969));
-    }
-    for (let i = 0; i < 5; i++) {
-        getGrazzingFields().push(createFieldStash("GRAZZING", 0x66CD00));
-    }
-    for (let i = 0; i < 5; i++) {
-        getPettingFarmFields().push(createFieldStash("PETTINGFARM", 0xDEB887));
-    }
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < 5; i++) {
+            getGrowingFields().push(createFieldStash("GROWING", 0xb58969));
+        }
+        for (let i = 0; i < 5; i++) {
+            getGrazzingFields().push(createFieldStash("GRAZZING", 0x66CD00));
+        }
+        for (let i = 0; i < 5; i++) {
+            getPettingFarmFields().push(createFieldStash("PETTINGFARM", 0xDEB887));
+        }
+        resolve();
+    })
 }
 
 function createAnimals() {
-    for (let i = 0; i < 100; i++) {
-        getCows().push(createAnimalStash("COW", 0.4));
-    }
-    for (let i = 0; i < 100; i++) {
-        getChickens().push(createAnimalStash("CHICKEN", 0.2));
-    }
-    for (let i = 0; i < 100; i++) {
-        getSheeps().push(createAnimalStash("SHEEP", 0.3));
-    }
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < 100; i++) {
+            getCows().push(createAnimalStash("COW", 0.4));
+        }
+        for (let i = 0; i < 100; i++) {
+            getChickens().push(createAnimalStash("CHICKEN", 0.2));
+        }
+        for (let i = 0; i < 100; i++) {
+            getSheeps().push(createAnimalStash("SHEEP", 0.3));
+        }
+        resolve();
+    })
 }
 
 function createCrops() {
-    for (let i = 0; i < 100; i ++) {
-        getWheat().push(createCropStash("WHEAT", 0.3));
-    }
-    for (let i = 0; i < 100; i ++) {
-        getCorn().push(createCropStash("CORN", 0.3));
-    }
-    for (let i = 0; i < 100; i ++) {
-        getGrass().push(createCropStash("GRASS", 0.3));
-    }
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < 100; i ++) {
+            getWheat().push(createCropStash("WHEAT", 0.3));
+        }
+        for (let i = 0; i < 100; i ++) {
+            getCorn().push(createCropStash("CORN", 0.3));
+        }
+        for (let i = 0; i < 100; i ++) {
+            getGrass().push(createCropStash("GRASS", 0.3));
+        }
+        resolve();
+    })
 }
 
 function createVisitors() {
-    for (let i = 0; i < 100; i++) {
-        let visitor = new PIXI.Sprite.from("../images/1f6b6.png");
-        visitor.scale.set(0.4);
-        visitor.x = 0;
-        visitor.y = 0;
-        getVisitors().push(visitor);
-    }
+    return new Promise((resolve,reject) => {
+        for (let i = 0; i < 100; i++) {
+            let visitor = new PIXI.Sprite.from("../images/1f6b6.png");
+            visitor.scale.set(0.4);
+            visitor.x = 0;
+            visitor.y = 0;
+            getVisitors().push(visitor);
+        }
+        resolve();
+    })
 }
 
 function createCropStash(cropType, scale) {
