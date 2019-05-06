@@ -2,9 +2,7 @@
 
 Beta can be accessed at https://farm-app-beta.herokuapp.com/
 
-<p align="center">
-## Game Rules
-</p>
+## <p align="center">Game Rules</p>
 
 ### Constraints
 * Cannot have more than 100 of the same type of animal on your farm.
