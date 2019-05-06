@@ -28,10 +28,12 @@ public class CreateNewAccountController {
     @RequestMapping(value = "/create-account", method = RequestMethod.POST)
     public String createAccount(@ModelAttribute @Valid CreateNewAccountReqDto createNewAccountReqDto, BindingResult result) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || userService.checkIfUserExists(createNewAccountReqDto.getUsername())) {
             loggger.log(Level.INFO, String.format("%s requested to create a new account but details were rejected", createNewAccountReqDto.getUsername()));
             return "/create-account";
         }
+
+        loggger.log(Level.INFO, String.format("%s requested to created a new account", createNewAccountReqDto.getUsername()));
         userService.createNewUser(createNewAccountReqDto);
         farmService.createFarm(createNewAccountReqDto.getUsername());
         return "redirect:/login";
