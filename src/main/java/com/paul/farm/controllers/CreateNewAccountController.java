@@ -23,7 +23,6 @@ public class CreateNewAccountController {
 
     @RequestMapping(value = "/create-account", method = RequestMethod.POST)
     public String createAccount(@ModelAttribute @Valid CreateNewAccountReqDto createNewAccountReqDto, BindingResult result) {
-        System.out.println(createNewAccountReqDto);
 
         if (result.hasErrors()) {
             return "/create-account";

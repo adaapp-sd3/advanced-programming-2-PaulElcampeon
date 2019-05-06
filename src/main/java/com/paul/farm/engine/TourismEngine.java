@@ -1,8 +1,10 @@
-package com.paul.farm.tourism;
+package com.paul.farm.engine;
 
 import com.paul.farm.enums.FieldType;
 import com.paul.farm.models.fields.PettingFarmField;
 import com.paul.farm.services.interfaces.FarmService;
+import com.paul.farm.tourismBank.TourismBank;
+import com.paul.farm.models.tourist.Tourist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,7 +25,7 @@ public class TourismEngine {
     private FarmService farmService;
 
     @Autowired
-    private TourismRevenue tourismRevenue;
+    private TourismBank tourismBank;
 
     private HashMap<String, Integer> farmAndNoOfVisitors = new HashMap<>();
 
@@ -32,7 +34,7 @@ public class TourismEngine {
         Tourist.process(farmAndNoOfVisitors);
         farmService.getAllOnlineFarms().stream().forEach(farm -> {
             if (farm.containsFieldWithAnimals(FieldType.PETTINGFARM)) {
-                tourismRevenue.addFarmWallet(farm);
+                tourismBank.addFarmWallet(farm);
                 farmAndNoOfVisitors.putIfAbsent(farm.getFarmName(), 0);
                 farm.getFields().stream().forEach(field -> {
                     if (field instanceof PettingFarmField && field.getNoOfAnimals() > 0) {
@@ -42,7 +44,7 @@ public class TourismEngine {
                                 tourist.setTimeArrived(System.currentTimeMillis());
                                 tourist.setField(field);
                                 field.addToField(tourist);
-                                tourismRevenue.addMoneyToFarmWallet(tourist);
+                                tourismBank.addMoneyToFarmWallet(tourist);
                                 farmAndNoOfVisitors.put(farm.getFarmName(), farmAndNoOfVisitors.get(farm.getFarmName()) + 1);
                             }
                         });
@@ -53,7 +55,7 @@ public class TourismEngine {
                 boolean present = farmAndNoOfVisitors.containsKey(farm.getFarmName());
                 if (present) {
                     farmAndNoOfVisitors.remove(farm.getFarmName());
-                    tourismRevenue.removeFarmWalletIfPresent(farm);
+                    tourismBank.removeFarmWalletIfPresent(farm);
                 }
                 simpMessagingTemplate.convertAndSend("/topic/farm/tourists/" + farm.getFarmName(), Collections.EMPTY_LIST);
             }

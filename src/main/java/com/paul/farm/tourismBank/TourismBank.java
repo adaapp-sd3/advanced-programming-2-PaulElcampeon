@@ -1,6 +1,7 @@
-package com.paul.farm.tourism;
+package com.paul.farm.tourismBank;
 
 import com.paul.farm.models.Farm;
+import com.paul.farm.models.tourist.Tourist;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,11 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Component
-public class TourismRevenue {
+public class TourismBank {
 
     private ConcurrentHashMap<String, Integer> revenueFromPettingFarm = new ConcurrentHashMap<>();
 
-    private Logger logger = Logger.getLogger(TourismRevenue.class.getName());
+    private Logger logger = Logger.getLogger(TourismBank.class.getName());
 
     public void addFarmWallet(Farm farm) {
         revenueFromPettingFarm.putIfAbsent(farm.getFarmName(), 0);
