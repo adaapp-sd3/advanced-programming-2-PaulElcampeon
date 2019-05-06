@@ -1,3 +1,3 @@
 # Farm-App
 
-#Deployed on heroku
+Beta can be accessed at https://farm-app-beta.herokuapp.com/
