@@ -13,7 +13,7 @@ const stage = app.stage;
 Promise.all([createFields(), createAnimals(), createCrops(), createVisitors(), createRainAnimation(), createSnowAnimation()])
     .then(()=>{
         initBackground();
-        setUpTractorAndMarketSprite();
+        createTractorAndMarketSprite();
         connect();
         setup();
     });
@@ -98,23 +98,6 @@ function checkForCollisionOnBottomSide(entity1, entity2) {
         return true;
     }
     return false;
-}
-
-function setUpTractorAndMarketSprite() {
-    leftTractorTexture = new PIXI.Texture.from("../images/farmerLeft.png");
-    rightTractorTexture = new PIXI.Texture.from("../images/farmerRight.png");
-    marketTexture = new PIXI.Texture.from("../images/building/market.png");
-    farmer = new PIXI.Sprite(leftTractorTexture);
-    market = new PIXI.Sprite(marketTexture);
-    market.name = "market";
-    farmer.name = "farmer";
-    market.x = 550;
-    market.y = 650;
-    farmer.x = 100;
-    farmer.y = 100;
-    farmer.vx = 0;
-    farmer.vy = 0;
-    farmer.scale.set(0.3);
 }
 
 function keyboardMovements() {

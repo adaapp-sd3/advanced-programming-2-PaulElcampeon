@@ -1,5 +1,5 @@
-var tractorSound = new Howl({
-  src: ['../../sound/tractor.mp3'],
+const tractorSound = new Howl({
+  src: ['../../sound/vehicle/tractor.mp3'],
   loop: true,
   volume: 0.2,
    sprite: {
@@ -7,38 +7,38 @@ var tractorSound = new Howl({
     }
 });
 
-var marketSound = new Howl({
-  src: ['../../sound/market.mp3'],
+const marketSound = new Howl({
+  src: ['../../sound/market/market.mp3'],
   loop: true,
   volume: 0.2
 });
 
-var cowSound = new Howl({
-  src: ['../../sound/cow.mp3'],
+const cowSound = new Howl({
+  src: ['../../sound/animals/cow.mp3'],
   loop: true,
   volume: 0.2
 });
 
-var sheepSound = new Howl({
-  src: ['../../sound/sheep.mp3'],
+const sheepSound = new Howl({
+  src: ['../../sound/animals/sheep.mp3'],
   loop: true,
   volume: 0.2
 });
 
-var chickenSound = new Howl({
-  src: ['../../sound/chicken.mp3'],
+const chickenSound = new Howl({
+  src: ['../../sound/animals/chicken.mp3'],
   loop: true,
   volume: 0.2
 });
 
-var clearSound = new Howl({
-  src: ['../../sound/clear.mp3'],
+const clearWeatherSound = new Howl({
+  src: ['../../sound/weather/clear.mp3'],
   loop: true,
   volume: 0.2
 });
 
-var rainSound = new Howl({
-  src: ['../../sound/rain.mp3'],
+const rainWeatherSound = new Howl({
+  src: ['../../sound/weather/rain.mp3'],
   loop: true,
   volume: 0.2
 });
@@ -88,22 +88,22 @@ function decreaseMarketVolume() {
     marketSound.stop();
 }
 
-function playClearSound() {
-    clearSound.play();
+function playClearWeatherSound() {
+    clearWeatherSound.play();
 }
 
 function decreaseClearVolume() {
-    clearSound.fade(0.2, 0, 1000);
-    clearSound.stop();
+    clearWeatherSound.fade(0.2, 0, 1000);
+    clearWeatherSound.stop();
 }
 
-function playRainSound() {
-    rainSound.play();
+function playRainWeatherSound() {
+    rainWeatherSound.play();
 }
 
 function decreaseRainVolume() {
-    rainSound.fade(0.2, 0, 1000);
-    rainSound.stop();
+    rainWeatherSound.fade(0.2, 0, 1000);
+    rainWeatherSound.stop();
 }
 
 function playAnimalSounds(data) {

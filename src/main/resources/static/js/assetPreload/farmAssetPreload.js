@@ -97,7 +97,7 @@ function createCrops() {
 function createVisitors() {
     return new Promise((resolve,reject) => {
         for (let i = 0; i < 100; i++) {
-            let visitor = new PIXI.Sprite.from("../images/1f6b6.png");
+            let visitor = new PIXI.Sprite.from("../images/people/visitor.png");
             visitor.scale.set(0.4);
             visitor.x = 0;
             visitor.y = 0;
@@ -105,6 +105,23 @@ function createVisitors() {
         }
         resolve();
     })
+}
+
+function createTractorAndMarketSprite() {
+    leftTractorTexture = new PIXI.Texture.from("../images/tractor/tractorLeft.png");
+    rightTractorTexture = new PIXI.Texture.from("../images/tractor/tractorRight.png");
+    marketTexture = new PIXI.Texture.from("../images/building/market.png");
+    farmer = new PIXI.Sprite(leftTractorTexture);
+    market = new PIXI.Sprite(marketTexture);
+    market.name = "market";
+    farmer.name = "farmer";
+    market.x = 550;
+    market.y = 650;
+    farmer.x = 100;
+    farmer.y = 100;
+    farmer.vx = 0;
+    farmer.vy = 0;
+    farmer.scale.set(0.3);
 }
 
 function createCropStash(cropType, scale) {
