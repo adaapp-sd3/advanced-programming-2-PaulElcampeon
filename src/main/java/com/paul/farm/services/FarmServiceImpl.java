@@ -55,7 +55,7 @@ public class FarmServiceImpl implements FarmService {
     }
 
 
-    @Scheduled(fixedDelay = 200)
+    @Scheduled(fixedDelay = 200, initialDelay = 60000)
     @Override
     public void processFarm() {
         farmRepository.findByOnline(true).stream().forEach(farm -> {
