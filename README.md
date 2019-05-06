@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # advanced-programming-2-PaulElcampeon
+=======
+# Farm-App
+>>>>>>> 7dfc9067c4aa657141503d36ff8b628216cf3740
 
 Beta can be accessed at https://farm-app-beta.herokuapp.com/
 

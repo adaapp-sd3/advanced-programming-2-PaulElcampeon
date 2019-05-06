@@ -6,6 +6,8 @@ function connect() {
 
     stompClient = Stomp.over(socket);
 
+    stompClient.debug = null;
+
     stompClient.connect({}, function (frame) {
 
         stompClient.subscribe('/topic/farm/' + getFarmName(), function (data) {

@@ -5,6 +5,7 @@ import com.paul.farm.models.animals.Cow;
 import com.paul.farm.models.fields.GrazingField;
 import com.paul.farm.utils.AnimalUtil;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)
 public class AnimalMovementTest {

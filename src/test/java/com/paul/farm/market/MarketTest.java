@@ -9,6 +9,7 @@ import com.paul.farm.models.fields.Field;
 import com.paul.farm.models.fields.GrazingField;
 import com.paul.farm.services.interfaces.FarmService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@Ignore
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)
 public class MarketTest {

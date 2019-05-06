@@ -29,7 +29,7 @@ public class TourismEngine {
 
     private HashMap<String, Integer> farmAndNoOfVisitors = new HashMap<>();
 
-    @Scheduled(fixedDelay = 500L)
+    @Scheduled(fixedDelay = 500)
     public void process() {
         Tourist.process(farmAndNoOfVisitors);
         farmService.getAllOnlineFarms().stream().forEach(farm -> {
