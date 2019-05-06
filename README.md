@@ -12,7 +12,6 @@ Beta can be accessed at https://farm-app-beta.herokuapp.com/
 * You can only have up to 5 fields.
 * If a field has 20 animals living on it and you buy another animal, the animal will be added to the next grazing field or petting farm if available.
 
-
 ### Field Conversions
 #### Conversion between fields
 * If you convert a petting farm field to a grazing field whilst you have animals and tourist, this will get rid of all the tourist on the petting farm.
@@ -22,3 +21,5 @@ Beta can be accessed at https://farm-app-beta.herokuapp.com/
 
 ### Market
 * In order to buy produce and land, you must move your tractor on top of the market building, once there you will be shown options on your dashboard, to find the price of the items you must move your mouse over the + or - buttons.
+
+##### To logout simply just close the page
