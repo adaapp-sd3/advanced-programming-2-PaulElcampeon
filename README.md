@@ -4,13 +4,14 @@ Beta can be accessed at https://farm-app-beta.herokuapp.com/
 
 ## <p align="center">Game Rules</p>
 
-### <p align="center">Constraints</p>
+### <p align="center">Constraints
 * Cannot have more than 100 of the same type of animal on your farm.
 * Cannot have more than 100 visitors on your farm.
 * Cannot have more than 20 animals in one field.
 * Animals can only live on grazing fields or petting farms.
 * You can only have up to 5 fields.
 * If a field has 20 animals living on it and you buy another animal, the animal will be added to the next grazing field or petting farm if available.
+</p>
 
 ### <p align="center">Field Conversions</p>
 #### <p align="center">Conversion between fields</p>
