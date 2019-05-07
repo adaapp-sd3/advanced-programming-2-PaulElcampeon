@@ -4,6 +4,8 @@
 
 Beta can be accessed at https://farm-app-beta.herokuapp.com/
 
+Graphics library used: Pixi.js
+
 ## <p align="center">Game Rules</p>
 
 ### Constraints
