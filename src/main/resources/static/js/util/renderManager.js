@@ -5,6 +5,8 @@ const farm = new Farm();
 const touristContainer = new PIXI.Container();
 const farmContainer = new PIXI.Container();
 var touristList = [];
+const background = new PIXI.Graphics();
+
 
 function renderDashboard(data) {
     if (dashBoard.rendered) {
@@ -27,7 +29,7 @@ function renderTourists() {
     try {
         getStage().removeChild(getTouristContainer());
         getTouristContainer().removeChildren(0, getTouristContainer().children.length);
-    } catch(err) {
+    } catch (err) {
         console.log("Tried to remove tourist from container but there were none")
     }
     let visitor = 0;
@@ -36,7 +38,7 @@ function renderTourists() {
         getVisitors()[visitor].y = tourist.ypos;
         getTouristContainer().addChild(getVisitors()[visitor]);
         visitor++;
-    })
+    });
     getStage().addChild(getTouristContainer());
 }
 
@@ -50,6 +52,10 @@ function getDashboard() {
 
 function getFarm() {
     return farm;
+}
+
+function getBackground() {
+    return background;
 }
 
 function getFarmContainer() {
@@ -69,10 +75,9 @@ function setTouristList(data) {
 }
 
 function initBackground() {
-    let background = new PIXI.Graphics();
     background.name = "background";
     background.beginFill(0x78d361);
-    background.drawRect(0, 0, getCanvas().width, getCanvas().height);
+    background.drawRect(0, 0, getWidthRation() * getMaxWidth(), getCanvas().height);
     background.endFill();
     getStage().addChild(background);
 }

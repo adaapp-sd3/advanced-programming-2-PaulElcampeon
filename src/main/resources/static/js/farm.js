@@ -2,16 +2,21 @@ const frameDiv = document.getElementById("farm");
 const log = console.log;
 const app = new PIXI.Application();
 const canvas = app.view;
-canvas.width = 700;
-canvas.height =  window.innerHeight;
+canvas.width = frameDiv.offsetWidth;
+canvas.height = window.innerHeight;
 canvas.classList.add('forCanvas');
 frameDiv.appendChild(canvas);
+const MAX_WIDTH = 700;
+const MAX_HEIGHT = 700;
+var widthRatio = canvas.width < 700 ? canvas.width / MAX_WIDTH : 700 / 700;
+var previousWidth = canvas.width;
+
 
 const stage = app.stage;
 
 //preload stuff
 Promise.all([createFields(), createAnimals(), createCrops(), createVisitors(), createRainAnimation(), createSnowAnimation()])
-    .then(()=>{
+    .then(() => {
         initBackground();
         createTractorAndMarketSprite();
         connect();
@@ -38,7 +43,7 @@ function setup() {
             farmer.y += farmer.vy;
         }
         slowDownWeatherEffect++;
-        if (slowDownWeatherEffect%6 == 0) {
+        if (slowDownWeatherEffect % 6 == 0) {
             produceWeather();
             if (slowDownWeatherEffect == 97) {
                 slowDownWeatherEffect = 0;
@@ -46,6 +51,8 @@ function setup() {
         }
         renderMessage();
     });
+
+    console.log(stage);
 }
 
 function getStage() {
@@ -66,16 +73,17 @@ function getMarket() {
 
 function checkForCollision(entity1, entity2) {
     return checkForCollisionOnLeftSide(entity1, entity2) ||
-    checkForCollisionOnRightSide(entity1, entity2) ||
-    checkForCollisionOnTopSide(entity1, entity2) ||
-    checkForCollisionOnBottomSide(entity1, entity2);
+        checkForCollisionOnRightSide(entity1, entity2) ||
+        checkForCollisionOnTopSide(entity1, entity2) ||
+        checkForCollisionOnBottomSide(entity1, entity2);
 
 }
 
 function checkForCollisionOnLeftSide(entity1, entity2) {
     if (entity1.x + entity1.vx <= entity2.x) {
         return true
-    };
+    }
+    ;
     return false;
 }
 
@@ -167,3 +175,33 @@ function keyboardMovements() {
 function getMemoryInfo() {
     console.log(window.performance.memory);
 }
+
+function getWidthRation() {
+    return widthRatio;
+}
+
+function getMaxWidth() {
+    return MAX_WIDTH;
+}
+
+function resizeFarm() {
+
+
+}
+
+
+window.onresize = function (event) {
+    canvas.width = frameDiv.offsetWidth;
+    widthRatio = canvas.width < 700 ? canvas.width / previousWidth : 700 / 700;
+    stage.children.forEach(child => {
+        if (child.name != "weather") {
+            child.x *= widthRatio;
+            child.width *= widthRatio;
+            child.children.forEach(childOfChild => {
+                childOfChild.x *= widthRatio;
+                childOfChild.width *= widthRatio;
+            });
+        }
+    });
+    previousWidth = canvas.width;
+};

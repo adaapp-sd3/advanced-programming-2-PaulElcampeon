@@ -24,14 +24,13 @@
     /*<![CDATA[*/
         var farmName = /*[[${farmName}]]*/ null;
         sessionStorage.setItem("farmName", farmName);
-        console.log(farmName);
         function getFarmName() {
             return farmName;
         }
     /*]]>*/
     </script>
-    <div id="dashboard" class="dashDiv bg-dark text-center text-white specialFont box"></div>
-    <div id="farm" class="farmDiv box"></div>
+    <div id="dashboard" class="dashDiv bg-dark text-center text-white specialFont"></div>
+    <div id="farm" class="farmDiv"></div>
     <script src="/js/assetPreload/farmAssetPreload.js"></script>
     <script src="/js/assetPreload/weatherAssetPreload.js"></script>
     <script src="/js/messages/messages.js"></script>

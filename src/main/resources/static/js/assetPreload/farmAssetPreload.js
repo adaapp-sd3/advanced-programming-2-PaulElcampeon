@@ -101,6 +101,7 @@ function createVisitors() {
             visitor.scale.set(0.4);
             visitor.x = 0;
             visitor.y = 0;
+            visitor.name = "visitor";
             getVisitors().push(visitor);
         }
         resolve();
@@ -129,6 +130,7 @@ function createCropStash(cropType, scale) {
     cropSprite.scale.set(scale);
     cropSprite.x = 0;
     cropSprite.y = 0;
+    cropSprite.name = "crop";
     return cropSprite
 }
 
@@ -147,6 +149,7 @@ function createAnimalStash(animalBreed, scale) {
     animalSprite = modifyAnimals(animalBreed, animalSprite, scale);
     animalSprite.x = 0;
     animalSprite.y = 0;
+    animalSprite.name = animalBreed;
     return animalSprite;
 }
 
