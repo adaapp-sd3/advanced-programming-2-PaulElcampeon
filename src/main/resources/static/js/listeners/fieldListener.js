@@ -1,10 +1,15 @@
 var indexOfField;
 
 const fieldListener = (field, farmer, indexOfField) => {
-    if (farmer.x >= field.getBounds().x && farmer.x <= field.getBounds().x + field.getBounds().width * getWidthRatio() && farmer.y <= field.getBounds().y + field.getBounds().height * getHeightRatio() && farmer.y >=  field.getBounds().y) {
+    if (farmer.x >= field.getBounds().x && farmer.x <= field.getBounds().x + field.getBounds().width && farmer.y <= field.getBounds().y + field.getBounds().height && farmer.y >=  field.getBounds().y) {
         setIndexOfField(indexOfField);
+        console.log("This is from the field listener");
+        console.log("farmer x position" + farmer.x);
+        console.log("farmer y position" + farmer.y);
+        console.log("farmer width: " + getFarmer().width);
+
     }
-}
+};
 
 function setIndexOfField(number) {
     indexOfField = number;
@@ -21,7 +26,7 @@ function checkIfFarmerIsPresentOnFields(fields, farmer) {
     let market = false;
     let activeFieldOptions;
     for (let i = 0; i < fields.length; i++) {
-        if (farmer.x >= fields[i].xpos && farmer.x <= fields[i].xpos + fields[i].width * getWidthRatio() && farmer.y + 20 <= fields[i].ypos + fields[i].height * getHeightRatio()  && farmer.y >=  fields[i].ypos - 5) {
+        if (farmer.x >= fields[i].xpos && farmer.x <= fields[i].xpos + fields[i].width && farmer.y + 20 <= fields[i].ypos + fields[i].height && farmer.y >=  fields[i].ypos - 5) {
             activeFieldOptions = checkIfFieldIsAType(fields[i], grazzingField, growingField, pettingField);
             break;
         }

@@ -1,5 +1,4 @@
-var dashboardDiv = document.getElementById("dashboard");
-
+const dashboardDiv = document.getElementById("dashboard");
 const dashBoard = new Dashboard();
 const farm = new Farm();
 const touristContainer = new PIXI.Container();
@@ -34,8 +33,9 @@ function renderTourists() {
     }
     let visitor = 0;
     getTouristList().forEach(tourist => {
-        getVisitors()[visitor].x = tourist.xpos;
-        getVisitors()[visitor].y = tourist.ypos;
+        getVisitors()[visitor].x = tourist.xpos * getResizeProperties().horizontalRatio;
+        getVisitors()[visitor].y = tourist.ypos * getResizeProperties().horizontalRatio;
+        getVisitors()[visitor].set.scale(getResizeProperties().visitors.scale);
         getTouristContainer().addChild(getVisitors()[visitor]);
         visitor++;
     });
@@ -80,4 +80,29 @@ function initBackground() {
     background.drawRect(0, 0, getCanvas().width, getCanvas().height);
     background.endFill();
     getStage().addChild(background);
+}
+
+function updateTractor() {
+    if (hasWidthsChange()) {
+        console.log("yahooooooo");
+        getFarmer().x = getOriginalTractorPos().x * getResizeProperties().horizontalRatio;
+        getFarmer().y = getOriginalTractorPos().y * getResizeProperties().horizontalRatio;
+        getFarmer().scale.set(getResizeProperties().tractor.scale);
+        console.log("farmer position from update tractor is ");
+        console.log("x pos: " + getFarmer().x);
+        console.log("y pos: " + getFarmer().y);
+        console.log("farmer width: " + getFarmer().width)
+
+    }
+}
+
+function saveTractorPosition() {
+    getOriginalTractorPos().x = getFarmer().x;
+    getOriginalTractorPos().y = getFarmer().y;
+}
+
+function updateMarket() {
+    getMarket().x = getResizeProperties().horizontalRatio * getOriginalMarketPos().x;
+    getMarket().y = getResizeProperties().horizontalRatio * getOriginalMarketPos().y;
+    getMarket().scale.set(getResizeProperties().market.scale);
 }

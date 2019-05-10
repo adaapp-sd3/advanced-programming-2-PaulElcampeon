@@ -8,6 +8,14 @@ const visitors = [];
 const wheat = [];
 const grass = [];
 const corn = [];
+const leftTractorTexture = new PIXI.Texture.from("../images/tractor/tractorLeft.png");
+const rightTractorTexture = new PIXI.Texture.from("../images/tractor/tractorRight.png");
+const marketTexture = new PIXI.Texture.from("../images/building/market.png");
+const farmer = new PIXI.Sprite(leftTractorTexture);
+const market = new PIXI.Sprite(marketTexture);
+const marketOriginalPos = {x:550, y:650};
+const tractorOriginalPos = {x:100, y:100};
+
 
 function getGrazzingFields() {
     return grazzingFields;
@@ -49,6 +57,34 @@ function getCorn() {
     return corn;
 }
 
+function getFarmer() {
+    return farmer;
+}
+
+function getMarket() {
+    return market;
+}
+
+function getMarketTexture() {
+    return marketTexture;
+}
+
+function getLeftTractorTexture() {
+    return leftTractorTexture;
+}
+
+function getRightTractorTexture() {
+    return rightTractorTexture;
+}
+
+function getOriginalMarketPos() {
+    return marketOriginalPos;
+}
+
+function getOriginalTractorPos() {
+    return tractorOriginalPos;
+}
+
 function createFields() {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < 5; i++) {
@@ -67,13 +103,13 @@ function createFields() {
 function createAnimals() {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < 100; i++) {
-            getCows().push(createAnimalStash("COW", 0.4));
+            getCows().push(createAnimalStash("COW", getResizeProperties().animals.cow));
         }
         for (let i = 0; i < 100; i++) {
-            getChickens().push(createAnimalStash("CHICKEN", 0.2));
+            getChickens().push(createAnimalStash("CHICKEN", getResizeProperties().animals.chicken));
         }
         for (let i = 0; i < 100; i++) {
-            getSheeps().push(createAnimalStash("SHEEP", 0.3));
+            getSheeps().push(createAnimalStash("SHEEP", getResizeProperties().animals.sheep));
         }
         resolve();
     })
@@ -81,24 +117,24 @@ function createAnimals() {
 
 function createCrops() {
     return new Promise((resolve, reject) => {
-        for (let i = 0; i < 100; i ++) {
-            getWheat().push(createCropStash("WHEAT", 0.3));
+        for (let i = 0; i < 100; i++) {
+            getWheat().push(createCropStash("WHEAT", getResizeProperties().crops.scale));
         }
-        for (let i = 0; i < 100; i ++) {
-            getCorn().push(createCropStash("CORN", 0.3));
+        for (let i = 0; i < 100; i++) {
+            getCorn().push(createCropStash("CORN", getResizeProperties().crops.scale));
         }
-        for (let i = 0; i < 100; i ++) {
-            getGrass().push(createCropStash("GRASS", 0.3));
+        for (let i = 0; i < 100; i++) {
+            getGrass().push(createCropStash("GRASS", getResizeProperties().crops.scale));
         }
         resolve();
     })
 }
 
 function createVisitors() {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
         for (let i = 0; i < 100; i++) {
             let visitor = new PIXI.Sprite.from("../images/people/visitor.png");
-            visitor.scale.set(0.4);
+            visitor.scale.set(getResizeProperties().visitors.scale);
             visitor.x = 0;
             visitor.y = 0;
             visitor.name = "visitor";
@@ -109,24 +145,19 @@ function createVisitors() {
 }
 
 function createTractorAndMarketSprite() {
-    leftTractorTexture = new PIXI.Texture.from("../images/tractor/tractorLeft.png");
-    rightTractorTexture = new PIXI.Texture.from("../images/tractor/tractorRight.png");
-    marketTexture = new PIXI.Texture.from("../images/building/market.png");
-    farmer = new PIXI.Sprite(leftTractorTexture);
-    market = new PIXI.Sprite(marketTexture);
     market.name = "market";
     farmer.name = "farmer";
-    market.x = 550;
-    market.y = 650;
-    farmer.x = 100;
-    farmer.y = 100;
+    market.x = 550 * getResizeProperties().horizontalRatio;
+    market.y = 650 * getResizeProperties().horizontalRatio;
+    farmer.x = 100 * getResizeProperties().horizontalRatio;
+    farmer.y = 100 * getResizeProperties().horizontalRatio;
     farmer.vx = 0;
     farmer.vy = 0;
-    farmer.scale.set(0.3);
+    farmer.scale.set(getResizeProperties().tractor.scale);
 }
 
 function createCropStash(cropType, scale) {
-    let cropSprite = new PIXI.Sprite.from("../images/crops/"+cropType+".png");
+    let cropSprite = new PIXI.Sprite.from("../images/crops/" + cropType + ".png");
     cropSprite.scale.set(scale);
     cropSprite.x = 0;
     cropSprite.y = 0;
@@ -139,13 +170,13 @@ function createFieldStash(fieldType, colorCode) {
     newField.name = fieldType;
     newField.lineStyle(10, 0x7c4011, 1);
     newField.beginFill(colorCode, 1);
-    newField.drawRoundedRect(0, 0, 300, 200, 16);
+    newField.drawRoundedRect(0, 0, getResizeProperties().field.width, getResizeProperties().field.height, 16);
     newField.endFill();
     return newField;
 }
 
 function createAnimalStash(animalBreed, scale) {
-    let animalSprite = new PIXI.Sprite.from("../images/animals/"+animalBreed+".png");
+    let animalSprite = new PIXI.Sprite.from("../images/animals/" + animalBreed + ".png");
     animalSprite = modifyAnimals(animalBreed, animalSprite, scale);
     animalSprite.x = 0;
     animalSprite.y = 0;
@@ -154,7 +185,7 @@ function createAnimalStash(animalBreed, scale) {
 }
 
 function modifyAnimals(animalBreed, animalSprite, scale) {
-    if(animalBreed == "CHICKEN") {
+    if (animalBreed == "CHICKEN") {
         animalSprite.scale.set(scale);
     } else if (animalBreed == "COW") {
         animalSprite.scale.set(scale);

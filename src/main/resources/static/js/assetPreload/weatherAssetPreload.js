@@ -9,7 +9,6 @@ function getSnowAnimations() {
     return snowAnimations;
 }
 
-
 function createRainAnimation() {
     return new Promise((resolve,reject) => {
         for (let i = 0; i < 20; i++) { //create 20 frames of rain animations

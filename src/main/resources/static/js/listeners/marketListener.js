@@ -9,4 +9,4 @@ const marketListener = (market, farmer) => {
         decreaseMarketVolume();
     }
     return false
-}
+};
