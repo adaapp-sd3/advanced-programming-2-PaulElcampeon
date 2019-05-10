@@ -59,8 +59,9 @@ function getMessageTimeLength() {
 function createMessage(message) {
     getMessageText().text = message;
     getMessageText().style = getTextStyle();
-    getMessageContainer().x = (getCanvas().width - getMessageText().width)/2;
-    getMessageContainer().y = (getCanvas().height - getMessageText().height)/2;
+    getMessageText().scale.set(getResizeProperties().messages.scale);
+    getMessageContainer().x = (getFrameDiv().offsetWidth - getMessageText().width)/2;
+    getMessageContainer().y = (getFrameDiv().offsetHeight - getMessageText().height)/2;
     getMessageContainer().addChild(getMessageText());
 }
 

@@ -31,8 +31,6 @@ function connect() {
 }
 
 function handleIncomingResponse(data) {
-    updateMarket();
-    updateTractor();
     renderFarm(data);
     renderDashboard(data);
 }

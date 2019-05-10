@@ -18,21 +18,21 @@ public class SheepItem extends MarketItem {
 
     @Override
     public boolean addToFarm(Farm farm) {
-        return farm.getFields()
-                .stream()
-                .filter(field -> field instanceof GrazingField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100) || field instanceof PettingFarmField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100))
-                .findFirst()
-                .map(field -> {
-                    farm.setTotalSheep(farm.getTotalSheep() + 1);
-                    farm.setBudget(farm.getBudget() - getBuyPrice());
-                    Sheep sheep = new Sheep();
-                    sheep.setFieldIndex(farm.getFields().indexOf(field));
-                    field.setNoOfAnimals(field.getNoOfAnimals() + 1);
-                    field.addToField(sheep);
-                    farm.getAnimals().add(sheep);
-                    return true;
-                })
-                .orElse(false);
+        int fieldCounter = 0;
+        for (Field field : farm.getFields()) {
+            if (field instanceof GrazingField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100) || field instanceof PettingFarmField && (field.getNoOfAnimals() < 20 && farm.getTotalSheep() < 100)) {
+                farm.setTotalSheep(farm.getTotalSheep() + 1);
+                farm.setBudget(farm.getBudget() - getBuyPrice());
+                Sheep sheep = new Sheep();
+                sheep.setFieldIndex(fieldCounter);
+                field.setNoOfAnimals(field.getNoOfAnimals() + 1);
+                field.addToField(sheep);
+                farm.getAnimals().add(sheep);
+                return true;
+            }
+            fieldCounter++;
+        }
+        return false;
     }
 
     @Override

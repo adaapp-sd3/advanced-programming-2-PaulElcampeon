@@ -19,7 +19,7 @@ class Farm {
                 getGrowingFields()[growingFields].y = field.ypos * getResizeProperties().horizontalRatio;
                 getGrowingFields()[growingFields].width = getResizeProperties().field.width;
                 getGrowingFields()[growingFields].height = getResizeProperties().field.height;
-                fieldListener(getGrowingFields()[growingFields], getFarmer(), indexOfFields);
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrowingFields()[growingFields]);
                 growingFields++;
             } else if (field.fieldType == "GRAZZING") {
@@ -27,7 +27,7 @@ class Farm {
                 getGrazzingFields()[grazzingFields].y = field.ypos * getResizeProperties().horizontalRatio;
                 getGrazzingFields()[grazzingFields].width = getResizeProperties().field.width;
                 getGrazzingFields()[grazzingFields].height = getResizeProperties().field.height;
-                fieldListener(getGrazzingFields()[grazzingFields], getFarmer(), indexOfFields);
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrazzingFields()[grazzingFields]);
                 grazzingFields++;
             } else {
@@ -35,7 +35,7 @@ class Farm {
                 getPettingFarmFields()[pettingFarmFields].y = field.ypos * getResizeProperties().horizontalRatio;
                 getPettingFarmFields()[pettingFarmFields].width = getResizeProperties().field.width;
                 getPettingFarmFields()[pettingFarmFields].height = getResizeProperties().field.height;
-                fieldListener(getPettingFarmFields()[pettingFarmFields], getFarmer(), indexOfFields);
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getPettingFarmFields()[pettingFarmFields]);
                 pettingFarmFields++;
             }
