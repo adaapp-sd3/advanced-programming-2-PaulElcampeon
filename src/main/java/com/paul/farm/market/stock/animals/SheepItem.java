@@ -2,7 +2,6 @@ package com.paul.farm.market.stock.animals;
 
 import com.paul.farm.market.stock.MarketItem;
 import com.paul.farm.models.Farm;
-import com.paul.farm.models.animals.Chicken;
 import com.paul.farm.models.animals.Sheep;
 import com.paul.farm.models.fields.Field;
 import com.paul.farm.models.fields.GrazingField;
