@@ -3,14 +3,17 @@ const log = console.log;
 const app = new PIXI.Application();
 const canvas = app.view;
 canvas.width = frameDiv.offsetWidth;
-canvas.height = window.innerHeight;
+canvas.height = frameDiv.offsetHeight;
+//canvas.height = window.innerHeight;
 canvas.classList.add('forCanvas');
 frameDiv.appendChild(canvas);
 const MAX_WIDTH = 700;
 const MAX_HEIGHT = 700;
 var widthRatio = canvas.width < 700 ? canvas.width / MAX_WIDTH : 700 / 700;
+var heightRatio = canvas.height < 700 ? canvas.height / MAX_HEIGHT : 700 / 700;
 var previousWidth = canvas.width;
-
+var previousHeight = canvas.height;
+var activeRatio;
 
 const stage = app.stage;
 
@@ -38,7 +41,7 @@ function setup() {
 
     app.ticker.add((delta) => {
 
-        if (!checkForCollision(farmer, stage)) {
+        if (!checkForCollision(farmer, getBackground())) {
             farmer.x += farmer.vx;
             farmer.y += farmer.vy;
         }
@@ -55,22 +58,6 @@ function setup() {
     console.log(stage);
 }
 
-function getStage() {
-    return stage;
-}
-
-function getCanvas() {
-    return canvas;
-}
-
-function getFarmer() {
-    return farmer;
-}
-
-function getMarket() {
-    return market;
-}
-
 function checkForCollision(entity1, entity2) {
     return checkForCollisionOnLeftSide(entity1, entity2) ||
         checkForCollisionOnRightSide(entity1, entity2) ||
@@ -81,9 +68,8 @@ function checkForCollision(entity1, entity2) {
 
 function checkForCollisionOnLeftSide(entity1, entity2) {
     if (entity1.x + entity1.vx <= entity2.x) {
-        return true
-    }
-    ;
+        return true;
+    };
     return false;
 }
 
@@ -176,8 +162,28 @@ function getMemoryInfo() {
     console.log(window.performance.memory);
 }
 
-function getWidthRation() {
+function getStage() {
+    return stage;
+}
+
+function getCanvas() {
+    return canvas;
+}
+
+function getFarmer() {
+    return farmer;
+}
+
+function getMarket() {
+    return market;
+}
+
+function getWidthRatio() {
     return widthRatio;
+}
+
+function getHeightRatio() {
+    return heightRatio;
 }
 
 function getMaxWidth() {
@@ -185,23 +191,87 @@ function getMaxWidth() {
 }
 
 function resizeFarm() {
+    getBackground().width = frameDiv.offsetWidth;
+    getBackground().height = frameDiv.offsetHeight;
+
+    if (frameDiv.offsetWidth >= 700) {
+        widthRatio = 1;
+    }
+
+    if (frameDiv.offsetWidth >= 600 && frameDiv.offsetWidth < 700) {
+
+    }
 
 
-}
 
-
-window.onresize = function (event) {
     canvas.width = frameDiv.offsetWidth;
     widthRatio = canvas.width < 700 ? canvas.width / previousWidth : 700 / 700;
+    canvas.height = frameDiv.offsetHeight;
+    heightRatio = canvas.height < 700 ? canvas.height / previousHeight : 700 / 700;
+
     stage.children.forEach(child => {
-        if (child.name != "weather") {
+        if (child.name != "weather" || child.name != "background") {
             child.x *= widthRatio;
+            child.y *= heightRatio;
             child.width *= widthRatio;
+            child.height *= heightRatio;
             child.children.forEach(childOfChild => {
                 childOfChild.x *= widthRatio;
                 childOfChild.width *= widthRatio;
+                childOfChild.y *= heightRatio;
+                childOfChild.height *= heightRatio;
             });
         }
     });
     previousWidth = canvas.width;
-};
+    previousHeight = canvas.height;
+
+}
+
+window.addEventListener('resize', resizeFarm);
+
+resizeFarm();
+
+function getActiveRatio() {
+    if (frameDiv.offsetWidth >= 700) {
+        return 700;
+    }
+
+    if (frameDiv.offsetWidth >= 600 && frameDiv.offsetWidth < 700) {
+        return 600;
+    }
+
+    if (frameDiv.offsetWidth >= 500 && frameDiv.offsetWidth < 600) {
+        return 500;
+    }
+
+    if (frameDiv.offsetWidth < 500) {
+        return 400;
+    }
+}
+
+function getWidthRatio() {
+    if (frameDiv.offsetWidth >= 700) {
+        return {
+            width: 700/getActiveRatio()
+        }
+    }
+
+    if (frameDiv.offsetWidth >= 600 && frameDiv.offsetWidth < 700) {
+        return {
+            width: 600/getActiveRatio()
+        }
+    }
+
+    if (frameDiv.offsetWidth >= 500 && frameDiv.offsetWidth < 600) {
+        return {
+            width: 500/getActiveRatio()
+        }
+    }
+
+    if (frameDiv.offsetWidth < 500) {
+        return {
+            width: 400/getActiveRatio()
+        }
+    }
+}

@@ -15,20 +15,20 @@ class Farm {
         let grazzingFields = 0;
         data.fields.forEach((field, indexOfFields) => {
             if (field.fieldType == "GROWING") {
-                getGrowingFields()[growingFields].x = field.xpos;
-                getGrowingFields()[growingFields].y = field.ypos;
+                getGrowingFields()[growingFields].x = field.xpos * getWidthRatio();
+                getGrowingFields()[growingFields].y = field.ypos * getHeightRatio();
                 fieldListener(getGrowingFields()[growingFields], getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrowingFields()[growingFields]);
                 growingFields++;
             } else if (field.fieldType == "GRAZZING") {
-                getGrazzingFields()[grazzingFields].x = field.xpos;
-                getGrazzingFields()[grazzingFields].y = field.ypos;
+                getGrazzingFields()[grazzingFields].x = field.xpos * getWidthRatio();
+                getGrazzingFields()[grazzingFields].y = field.ypos * getHeightRatio();
                 fieldListener(getGrazzingFields()[grazzingFields], getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrazzingFields()[grazzingFields]);
                 grazzingFields++;
             } else {
-                getPettingFarmFields()[pettingFarmFields].x = field.xpos;
-                getPettingFarmFields()[pettingFarmFields].y = field.ypos;
+                getPettingFarmFields()[pettingFarmFields].x = field.xpos * getWidthRatio();
+                getPettingFarmFields()[pettingFarmFields].y = field.ypos * getHeightRatio();
                 fieldListener(getPettingFarmFields()[pettingFarmFields], getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getPettingFarmFields()[pettingFarmFields]);
                 pettingFarmFields++;

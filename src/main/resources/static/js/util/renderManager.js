@@ -77,7 +77,7 @@ function setTouristList(data) {
 function initBackground() {
     background.name = "background";
     background.beginFill(0x78d361);
-    background.drawRect(0, 0, getWidthRation() * getMaxWidth(), getCanvas().height);
+    background.drawRect(0, 0, getCanvas().width, getCanvas().height);
     background.endFill();
     getStage().addChild(background);
 }

@@ -5,8 +5,8 @@ body {
     margin: auto;
     height: 100%;
     min-height: 100%;
-    display: flex;
-	flex-direction: row;
+    display: inline-flex;
+	/*flex-direction: row;*/
     overflow: hidden;
 }
 
@@ -19,10 +19,12 @@ body {
     /*max-width: 700px;*/
     /*min-width: 700px;*/
     overflow: hidden;
+    height: 100vh;
     width: 60vw;
 }
 
 .dashDiv {
+    float:left;
     width: 40vw;
     height: 100vh;
     overflow-y: auto;
