@@ -9,11 +9,11 @@ function getSnowAnimations() {
     return snowAnimations;
 }
 
-
 function createRainAnimation() {
     return new Promise((resolve,reject) => {
         for (let i = 0; i < 20; i++) { //create 20 frames of rain animations
             let rainDropContainer = new PIXI.Container();
+            rainDropContainer.name = "weather";
             let noOfRainDrops = Math.floor((Math.random() * 50) + 20);//between 20-70
             for (let i = 0; i < noOfRainDrops; i++) {
                 let graphics = new PIXI.Graphics();
@@ -34,6 +34,7 @@ function createSnowAnimation() {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < 20; i++) { //create 20 frames of rain animations
             let snowDropContainer = new PIXI.Container();
+            snowDropContainer.name = "weather";
             let noOfSnowDrops = Math.floor((Math.random() * 30) + 20);//between 20-50
             for (let i = 0; i < noOfSnowDrops; i++) {
                 let graphics = new PIXI.Graphics();
