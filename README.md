@@ -6,7 +6,7 @@ Beta can be accessed at https://farm-app-beta.herokuapp.com/
 
 Graphics library used: Pixi.js
 
-## <p align="center">Quick tip</p>
+## Quick tip
 
 * When playing on mobile devices make sure to click on the fullscreen button on the top of the dashboard.
 
