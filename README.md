@@ -34,6 +34,9 @@ Graphics library used: Pixi.js
 
 ## <p align="center">Key Info</p>
 
+### Saving game.
+* Your game is automatically saved, so you need not worry about that.
+
 ### Your animals will die if you do not feed them.
 * Cows eat straw.
 * Sheep eat straw.
@@ -51,3 +54,4 @@ Graphics library used: Pixi.js
 
 ### Petting farms profits.
 * In order to make profit from a petting farm you must have at least 1 type of animal present in the petting farm for tourists to come and visit your farm. Tourist will pay an amount to visit your farm.
+
