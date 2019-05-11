@@ -10,6 +10,7 @@ Graphics library used: Pixi.js
 
 * When playing on mobile devices make sure to click on the fullscreen button on the top of the dashboard.
 
+
 ## <p align="center">Game Rules</p>
 
 ### Constraints
