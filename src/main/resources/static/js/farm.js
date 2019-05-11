@@ -47,6 +47,8 @@ function setup() {
         }
         renderMessage();
     });
+    stage.scale.set(0.5);
+
 }
 
 function checkForCollision(entity1, entity2) {
