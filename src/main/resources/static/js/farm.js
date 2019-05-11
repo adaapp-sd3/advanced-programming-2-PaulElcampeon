@@ -1,7 +1,3 @@
-//if(navigator.userAgent.match(/Android/i)){
-//    window.scrollTo(0,1);
-//}
-
 const frameDiv = document.getElementById("farm");
 const log = console.log;
 const app = new PIXI.Application();
@@ -13,6 +9,7 @@ frameDiv.appendChild(canvas);
 var activeWidth;
 resizeFarm();
 getResizeProperties();
+var tractorMovement = {x:0, y:0, moveHorizontal:false, moveVertical:false, move: false};
 
 const stage = app.stage;
 
@@ -50,110 +47,12 @@ function setup() {
             }
         }
         renderMessage();
+
+        if (getTractorMovement().move) {
+            moveTractor();
+        }
     });
 
-}
-
-function checkForCollision(entity1, entity2) {
-    return checkForCollisionOnLeftSide(entity1, entity2) ||
-        checkForCollisionOnRightSide(entity1, entity2) ||
-        checkForCollisionOnTopSide(entity1, entity2) ||
-        checkForCollisionOnBottomSide(entity1, entity2);
-}
-
-function checkForCollisionOnLeftSide(entity1, entity2) {
-    if (entity1.x + entity1.vx <= entity2.x) {
-        return true;
-    }
-    return false;
-}
-
-function checkForCollisionOnRightSide(entity1, entity2) {
-    if (entity1.x + entity1.width + entity1.vx >= entity2.width) {
-        return true;
-    }
-    return false;
-}
-
-function checkForCollisionOnTopSide(entity1, entity2) {
-    if (entity1.y + entity1.vy <= entity2.y) {
-        return true;
-    }
-    return false;
-}
-
-function checkForCollisionOnBottomSide(entity1, entity2) {
-    if (entity1.y + entity1.height + entity1.vy >= entity2.height) {
-        return true;
-    }
-    return false;
-}
-
-function keyboardMovements() {
-    //Capture the keyboard arrow keys
-    let left = keyboard("ArrowLeft");
-    let up = keyboard("ArrowUp");
-    let right = keyboard("ArrowRight");
-    let down = keyboard("ArrowDown");
-
-    //Left arrow key `press` method
-    left.press = () => {
-        getFarmer().texture = getLeftTractorTexture();
-        getFarmer().vx = -5;
-        getFarmer().vy = 0;
-        playTractorSound();
-    };
-    //Left arrow key `release` method
-    left.release = () => {
-        if (!right.isDown && getFarmer().vy === 0) {
-            getFarmer().vx = 0;
-            saveTractorPosition(getFarmer().x, getFarmer().y);
-            decreaseTractorVolume();
-        }
-    };
-
-    //Up
-    up.press = () => {
-        getFarmer().vy = -5;
-        getFarmer().vx = 0;
-        playTractorSound();
-    };
-    up.release = () => {
-        if (!down.isDown && getFarmer().vx === 0) {
-            getFarmer().vy = 0;
-            saveTractorPosition(getFarmer().x, getFarmer().y);
-            decreaseTractorVolume();
-        }
-    };
-
-    //Right
-    right.press = () => {
-        getFarmer().texture = getRightTractorTexture();
-        getFarmer().vx = 5;
-        getFarmer().vy = 0;
-        playTractorSound();
-    };
-    right.release = () => {
-        if (!left.isDown && getFarmer().vy === 0) {
-            getFarmer().vx = 0;
-            saveTractorPosition(getFarmer().x, getFarmer().y);
-            decreaseTractorVolume();
-        }
-    };
-
-    //Down
-    down.press = () => {
-        getFarmer().vy = 5;
-        getFarmer().vx = 0;
-        playTractorSound();
-    };
-    down.release = () => {
-        if (!up.isDown && getFarmer().vx === 0) {
-            getFarmer().vy = 0;
-            saveTractorPosition(getFarmer().x, getFarmer().y);
-            decreaseTractorVolume();
-        }
-    };
 }
 
 function getMemoryInfo() {
@@ -170,6 +69,10 @@ function getCanvas() {
 
 function getFrameDiv() {
     return frameDiv;
+}
+
+function getTractorMovement() {
+    return tractorMovement;
 }
 
 function resizeFarm() {
@@ -251,3 +154,23 @@ function getResizeProperties() {
 }
 
 window.addEventListener('resize', resizeFarm);
+
+stage.interactive = true;
+
+//for devices with touch screen
+stage.on('tap', (event) => {
+    getTractorMovement().x = Math.round(event.data.global.x);
+    getTractorMovement().y = Math.round(event.data.global.y);
+    getTractorMovement().moveHorizontal = true;
+    getTractorMovement().moveVertical = true;
+    getTractorMovement().move = true;
+})
+
+stage.on('click', (event) => {
+    getTractorMovement().x = Math.round(event.data.global.x);
+    getTractorMovement().y = Math.round(event.data.global.y);
+    getTractorMovement().moveHorizontal = true;
+    getTractorMovement().moveVertical = true;
+    getTractorMovement().move = true;
+})
+
