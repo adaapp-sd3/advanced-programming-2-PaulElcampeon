@@ -6,7 +6,11 @@ class Dashboard {
         this.div.style.fontSize = "1vw";
 
         this.header = document.createElement("p");
-        this.header.classList.add('m-0', 'p-2', 'border', 'border-white')
+        this.header.classList.add('m-0', 'p-2', 'border', 'border-white');
+
+        this.fullScreenButton = document.createElement("button");
+        this.fullScreenButton.classList.add('mt-3');
+
         this.title = document.createElement("p");
         this.title.classList.add('underline', 'mt-3');
 
@@ -45,6 +49,16 @@ class Dashboard {
     render(data) {
         this.rendered = true;
         this.header.innerHTML = "DASHBOARD";
+
+        this.fullScreenButton.innerHTML = "Go Full Screen";
+        this.fullScreenButton.addEventListener("click", ()=>{
+            if (screenfull.enabled) {
+        		screenfull.request();
+        	} else {
+        		// Ignore or do something else
+        	}
+        })
+
         this.title.innerHTML = "Farmer " + data.farmName;
 
         this.budgetTitle.innerHTML = "Budget"
@@ -95,6 +109,7 @@ class Dashboard {
 
     appendElements() {
         getDashboardDiv().appendChild(this.header);
+        getDashboardDiv().appendChild(this.fullScreenButton);
         getDashboardDiv().appendChild(this.title);
 
         getDashboardDiv().appendChild(this.budgetTitle);
