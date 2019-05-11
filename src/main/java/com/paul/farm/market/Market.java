@@ -10,6 +10,7 @@ import com.paul.farm.market.stock.animals.SheepItem;
 import com.paul.farm.market.stock.crop.CornItem;
 import com.paul.farm.market.stock.crop.WheatItem;
 import com.paul.farm.market.stock.field.FieldItem;
+import com.paul.farm.market.stock.produce.BreadItem;
 import com.paul.farm.market.stock.seed.CornSeedItem;
 import com.paul.farm.market.stock.seed.GrassSeedItem;
 import com.paul.farm.market.stock.seed.WheatSeedItem;
@@ -62,6 +63,7 @@ public class Market {
         itemsToSell.put("corn", CornItem.getInstance());
         itemsToSell.put("beef", BeefItem.getInstance());
         itemsToSell.put("wool", WoolItem.getInstance());
+        itemsToSell.put("bread", BreadItem.getInstance());
         itemsToSell.put("egg", EggItem.getInstance());
         itemsToSell.put("lamb", LambItem.getInstance());
         itemsToSell.put("milk", MilkItem.getInstance());

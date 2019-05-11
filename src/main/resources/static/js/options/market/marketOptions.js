@@ -30,6 +30,7 @@ function getBuyAndSellSection() {
     buyAndSellDiv.appendChild(getBuyAndSellOption("egg", "sell", 5, 0));
     buyAndSellDiv.appendChild(getBuyAndSellOption("lamb", "sell", 15, 0));
     buyAndSellDiv.appendChild(getBuyAndSellOption("milk", "sell", 8 , 0));
+    buyAndSellDiv.appendChild(getBuyAndSellOption("bread", "sell", 5 , 0));
     buyAndSellDiv.appendChild(getBuyAndSellOption("field", "buy", 0, 400));
     return buyAndSellDiv;
 }
