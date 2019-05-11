@@ -1,6 +1,6 @@
-if(navigator.userAgent.includes("Android") || navigator.userAgent.includes("iPhone")){
+if(navigator.userAgent.match(/Android/i)){
     window.scrollTo(0,1);
-}
+ }
 
 console.log(navigator);
 console.log(navigator.userAgent);
