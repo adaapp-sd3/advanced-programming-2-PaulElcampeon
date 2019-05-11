@@ -3,7 +3,7 @@ class Dashboard {
         this.rendered = false;
         this.div = document.createElement("div");
         this.div.classList.add('text-center', 'w-100','text-white', 'specialFont', 'my-1');
-        this.div.style.fontSize = "1vw";
+        this.div.style.fontSize = "1.5vw";
 
         this.header = document.createElement("p");
         this.header.classList.add('m-0', 'p-2', 'border', 'border-white');

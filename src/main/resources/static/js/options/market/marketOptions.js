@@ -53,7 +53,7 @@ function getBuyAndSellOption(item, option, sellPrice, buyPrice) {
     let itemTag = document.createElement("p");
     itemTag.innerHTML = item.toUpperCase();
     itemTag.style.display = "inline-block";
-    itemTag.classList.add("mx-2");
+    itemTag.classList.add('mx-2', 'marketItem');
     buyAndSellOptionDiv.appendChild(itemTag);
 
     let buyButton = document.createElement("button");

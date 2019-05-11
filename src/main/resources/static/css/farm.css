@@ -38,6 +38,9 @@ body {
     margin-right: 0;
 }
 
+.marketItem {
+    font-size: 1.3vw;
+}
 
 .forDashboardBtn {
     font-size: 1.3vw;
