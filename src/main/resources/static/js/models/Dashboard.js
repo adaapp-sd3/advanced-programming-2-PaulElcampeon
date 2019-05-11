@@ -9,7 +9,7 @@ class Dashboard {
         this.header.classList.add('m-0', 'p-2', 'border', 'border-white');
 
         this.fullScreenButton = document.createElement("button");
-        this.fullScreenButton.classList.add('mt-3');
+        this.fullScreenButton.classList.add('my-3', 'w-75', 'forDashboardBtn');
 
         this.title = document.createElement("p");
         this.title.classList.add('underline', 'mt-3');
