@@ -28,7 +28,7 @@ function setup() {
 
     let slowDownWeatherEffect = 0;
 
-    window.setInterval(getMemoryInfo, 5000);//get memory info every 5 mins
+    window.setInterval(getMemoryInfo, 300000);//get memory info every 5 mins
 
     getCurrentWeather();
     window.setInterval(getCurrentWeather, 600000);//get weather data every 10 mins
