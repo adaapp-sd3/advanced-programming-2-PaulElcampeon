@@ -47,7 +47,6 @@ function setup() {
         }
         renderMessage();
     });
-    stage.scale.set(0.5);
 
 }
 
@@ -218,7 +217,7 @@ function getResizeProperties() {
             crops: {scale: 0.21},
             messages: {scale: 0.71}
         }
-    } else { //(frameDiv.offsetWidth < 500)
+    } else if (frameDiv.offsetWidth >= 400 && frameDiv.offsetWidth < 500){ //(frameDiv.offsetWidth < 500)
         activeWidth = 400;
         return {
             width: 400,
@@ -231,6 +230,19 @@ function getResizeProperties() {
             crops: {scale: 0.17},
             messages: {scale: 0.57}
         }
+    } else {
+         activeWidth = 300;
+         return {
+            width: 300,
+            horizontalRatio: 300 / 700,
+            field: {width: 128, height: 85},
+            market: {scale: 0.42},
+            tractor: {scale: 0.12},
+            animals: {scale: {cow: 0.16, sheep: 0.12, chicken: 0.08}},
+            visitors: {scale: 0.16},
+            crops: {scale: 0.12},
+            messages: {scale: 0.42}
+         }
     }
 }
 
