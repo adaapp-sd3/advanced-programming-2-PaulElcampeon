@@ -15,6 +15,7 @@ Graphics library used: Pixi.js
 * Animals can only live on grazing fields or petting farms.
 * You can only have up to 5 fields.
 * If a field has 20 animals living on it and you buy another animal, the animal will be added to the next grazing field or petting farm if available.
+* You can only plant seeds on growing fields.
 
 ### Field Conversions
 #### Conversion between fields
@@ -26,4 +27,22 @@ Graphics library used: Pixi.js
 ### Market
 * In order to buy produce and land, you must move your tractor on top of the market building, once there you will be shown options on your dashboard, to find the price of the items you must move your mouse over the + or - buttons.
 
-##### To logout simply just close the page
+## <p align="center">Key Info</p>
+
+### Your animals will die if you do not feed them.
+* Cows eat straw.
+* Sheep eat straw.
+* Chickens eat corn.
+
+### Animal produce.
+* Cows produce milk periodically and beef when reached full maturity.
+* Sheep produce wool periodically and lamb when reached full maturity.
+* Chickens produce eggs periodically.
+
+### Planting seeds.
+* Grass seed produces straw.
+* Corn seed produces corn.
+* Wheat seed produces bread.
+
+### Petting farms profits.
+* In order to make profit from a petting farm you must have at least 1 type of animal present in the petting farm for tourists to come and visit your farm. Tourist will pay an amount to visit your farm.
