@@ -16,7 +16,7 @@
     <script src="https://pixijs.download/v5.0.0-rc.2/pixi.js"></script>
     <script src="https://pixijs.download/v5.0.0-rc.2/pixi.js.map"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.0/screenfull.js"></script>
 </head>
 
 <body>
@@ -24,14 +24,13 @@
     /*<![CDATA[*/
         var farmName = /*[[${farmName}]]*/ null;
         sessionStorage.setItem("farmName", farmName);
-        console.log(farmName);
         function getFarmName() {
             return farmName;
         }
     /*]]>*/
     </script>
-    <div id="dashboard" class="dashDiv bg-dark text-center text-white specialFont box"></div>
-    <div id="farm" class="farmDiv box"></div>
+    <div id="dashboard" class="dashDiv bg-dark text-center text-white specialFont"></div>
+    <div id="farm" class="farmDiv"></div>
     <script src="/js/assetPreload/farmAssetPreload.js"></script>
     <script src="/js/assetPreload/weatherAssetPreload.js"></script>
     <script src="/js/messages/messages.js"></script>
@@ -49,6 +48,8 @@
     <script src="/js/models/Farm.js"></script>
     <script src="/js/util/renderManager.js"></script>
     <script src="/js/connection/connection.js"></script>
+    <script src="/js/movement/tractorMovement.js"></script>
+    <script src="/js/physics/collision.js"></script>
     <script src="/js/farm.js"></script>
 </body>
 </html>

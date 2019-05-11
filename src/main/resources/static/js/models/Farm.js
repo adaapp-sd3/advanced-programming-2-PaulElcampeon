@@ -15,25 +15,31 @@ class Farm {
         let grazzingFields = 0;
         data.fields.forEach((field, indexOfFields) => {
             if (field.fieldType == "GROWING") {
-                getGrowingFields()[growingFields].x = field.xpos;
-                getGrowingFields()[growingFields].y = field.ypos;
-                fieldListener(getGrowingFields()[growingFields], getFarmer(), indexOfFields);
+                getGrowingFields()[growingFields].x = field.xpos * getResizeProperties().horizontalRatio;
+                getGrowingFields()[growingFields].y = field.ypos * getResizeProperties().horizontalRatio;
+                getGrowingFields()[growingFields].width = getResizeProperties().field.width;
+                getGrowingFields()[growingFields].height = getResizeProperties().field.height;
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrowingFields()[growingFields]);
                 growingFields++;
             } else if (field.fieldType == "GRAZZING") {
-                getGrazzingFields()[grazzingFields].x = field.xpos;
-                getGrazzingFields()[grazzingFields].y = field.ypos;
-                fieldListener(getGrazzingFields()[grazzingFields], getFarmer(), indexOfFields);
+                getGrazzingFields()[grazzingFields].x = field.xpos * getResizeProperties().horizontalRatio;
+                getGrazzingFields()[grazzingFields].y = field.ypos * getResizeProperties().horizontalRatio;
+                getGrazzingFields()[grazzingFields].width = getResizeProperties().field.width;
+                getGrazzingFields()[grazzingFields].height = getResizeProperties().field.height;
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getGrazzingFields()[grazzingFields]);
                 grazzingFields++;
             } else {
-                getPettingFarmFields()[pettingFarmFields].x = field.xpos;
-                getPettingFarmFields()[pettingFarmFields].y = field.ypos;
-                fieldListener(getPettingFarmFields()[pettingFarmFields], getFarmer(), indexOfFields);
+                getPettingFarmFields()[pettingFarmFields].x = field.xpos * getResizeProperties().horizontalRatio;
+                getPettingFarmFields()[pettingFarmFields].y = field.ypos * getResizeProperties().horizontalRatio;
+                getPettingFarmFields()[pettingFarmFields].width = getResizeProperties().field.width;
+                getPettingFarmFields()[pettingFarmFields].height = getResizeProperties().field.height;
+                fieldListener(field, getFarmer(), indexOfFields);
                 getFarmContainer().addChild(getPettingFarmFields()[pettingFarmFields]);
                 pettingFarmFields++;
             }
-        })
+        });
 
         checkIfFarmerIsPresentOnFields(data.fields, getFarmer());
 
@@ -42,44 +48,50 @@ class Farm {
         let chicken = 0;
         data.animals.forEach(animal => {
             if (animal.breed == "COW") {
-                getCows()[cow].x = animal.xpos;
-                getCows()[cow].y = animal.ypos;
+                getCows()[cow].x = animal.xpos * getResizeProperties().horizontalRatio;
+                getCows()[cow].y = animal.ypos * getResizeProperties().horizontalRatio;
+                getCows()[cow].scale.set(getResizeProperties().animals.scale.cow);
                 getFarmContainer().addChild(getCows()[cow]);
                 cow++;
             } else if (animal.breed == "SHEEP") {
-                getSheeps()[sheep].x = animal.xpos;
-                getSheeps()[sheep].y = animal.ypos;
+                getSheeps()[sheep].x = animal.xpos * getResizeProperties().horizontalRatio;
+                getSheeps()[sheep].y = animal.ypos * getResizeProperties().horizontalRatio;
+                getSheeps()[sheep].scale.set(getResizeProperties().animals.scale.sheep);
                 getFarmContainer().addChild(getSheeps()[sheep]);
                 sheep++;
             } else {//must be chicken
-                getChickens()[chicken].x = animal.xpos;
-                getChickens()[chicken].y = animal.ypos;
+                getChickens()[chicken].x = animal.xpos * getResizeProperties().horizontalRatio;
+                getChickens()[chicken].y = animal.ypos * getResizeProperties().horizontalRatio;
+                getChickens()[chicken].scale.set(getResizeProperties().animals.scale.chicken);
                 getFarmContainer().addChild(getChickens()[chicken]);
                 chicken++;
             }
-        })
+        });
 
         let corn = 0;
         let grass = 0;
         let wheat = 0;
         data.crops.forEach(crop => {
             if (crop.cropType == "GRASS") {
-                getGrass()[grass].x = crop.xpos;
-                getGrass()[grass].y = crop.ypos;
+                getGrass()[grass].x = crop.xpos * getResizeProperties().horizontalRatio;
+                getGrass()[grass].y = crop.ypos * getResizeProperties().horizontalRatio;
+                getGrass()[grass].scale.set(getResizeProperties().crops.scale);
                 getFarmContainer().addChild(getGrass()[grass]);
                 grass++;
             } else if (crop.cropType == "WHEAT") {
-                getWheat()[wheat].x = crop.xpos;
-                getWheat()[wheat].y = crop.ypos;
+                getWheat()[wheat].x = crop.xpos * getResizeProperties().horizontalRatio;
+                getWheat()[wheat].y = crop.ypos * getResizeProperties().horizontalRatio;
+                getWheat()[wheat].scale.set(getResizeProperties().crops.scale);
                 getFarmContainer().addChild(getWheat()[wheat]);
                 wheat++;
             } else {//must be corn
-                getCorn()[corn].x = crop.xpos;
-                getCorn()[corn].y = crop.ypos;
+                getCorn()[corn].x = crop.xpos * getResizeProperties().horizontalRatio;
+                getCorn()[corn].y = crop.ypos * getResizeProperties().horizontalRatio;
+                getCorn()[corn].scale.set(getResizeProperties().crops.scale);
                 getFarmContainer().addChild(getCorn()[corn]);
                 corn++;
             }
-        })
+        });
 
         playAnimalSounds(data);
 
