@@ -44,3 +44,70 @@ function keyboard(value) {
 
   return key;
 }
+
+function keyboardMovements() {
+    //Capture the keyboard arrow keys
+    let left = keyboard("ArrowLeft");
+    let up = keyboard("ArrowUp");
+    let right = keyboard("ArrowRight");
+    let down = keyboard("ArrowDown");
+
+    //Left arrow key `press` method
+    left.press = () => {
+        getFarmer().texture = getLeftTractorTexture();
+        getFarmer().vx = -5;
+        getFarmer().vy = 0;
+        playTractorSound();
+    };
+    //Left arrow key `release` method
+    left.release = () => {
+        if (!right.isDown && getFarmer().vy === 0) {
+            getFarmer().vx = 0;
+            saveTractorPosition(getFarmer().x, getFarmer().y);
+            decreaseTractorVolume();
+        }
+    };
+
+    //Up
+    up.press = () => {
+        getFarmer().vy = -5;
+        getFarmer().vx = 0;
+        playTractorSound();
+    };
+    up.release = () => {
+        if (!down.isDown && getFarmer().vx === 0) {
+            getFarmer().vy = 0;
+            saveTractorPosition(getFarmer().x, getFarmer().y);
+            decreaseTractorVolume();
+        }
+    };
+
+    //Right
+    right.press = () => {
+        getFarmer().texture = getRightTractorTexture();
+        getFarmer().vx = 5;
+        getFarmer().vy = 0;
+        playTractorSound();
+    };
+    right.release = () => {
+        if (!left.isDown && getFarmer().vy === 0) {
+            getFarmer().vx = 0;
+            saveTractorPosition(getFarmer().x, getFarmer().y);
+            decreaseTractorVolume();
+        }
+    };
+
+    //Down
+    down.press = () => {
+        getFarmer().vy = 5;
+        getFarmer().vx = 0;
+        playTractorSound();
+    };
+    down.release = () => {
+        if (!up.isDown && getFarmer().vx === 0) {
+            getFarmer().vy = 0;
+            saveTractorPosition(getFarmer().x, getFarmer().y);
+            decreaseTractorVolume();
+        }
+    };
+}

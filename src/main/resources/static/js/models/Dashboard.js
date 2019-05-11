@@ -8,8 +8,11 @@ class Dashboard {
         this.header = document.createElement("p");
         this.header.classList.add('m-0', 'p-2', 'border', 'border-white');
 
+        this.logoutButton = document.createElement("button");
+        this.logoutButton.classList.add('my-3', 'w-50', 'forDashboardBtn');
+
         this.fullScreenButton = document.createElement("button");
-        this.fullScreenButton.classList.add('my-3', 'w-75', 'forDashboardBtn');
+        this.fullScreenButton.classList.add('my-3', 'w-50', 'forDashboardBtn');
 
         this.title = document.createElement("p");
         this.title.classList.add('underline', 'mt-3');
@@ -50,8 +53,13 @@ class Dashboard {
         this.rendered = true;
         this.header.innerHTML = "DASHBOARD";
 
-        this.fullScreenButton.innerHTML = "Go Full Screen";
-        this.fullScreenButton.addEventListener("click", ()=>{
+        this.logoutButton.innerHTML = "Logout";
+        this.logoutButton.addEventListener("click", () => {
+            location.href = "../logout"
+        })
+
+        this.fullScreenButton.innerHTML = "Full Screen";
+        this.fullScreenButton.addEventListener("click", ()=> {
             if (screenfull.enabled) {
         		screenfull.request();
         	} else {
@@ -109,6 +117,8 @@ class Dashboard {
 
     appendElements() {
         getDashboardDiv().appendChild(this.header);
+        getDashboardDiv().appendChild(this.logoutButton);
+        getDashboardDiv().appendChild(document.createElement("br"));
         getDashboardDiv().appendChild(this.fullScreenButton);
         getDashboardDiv().appendChild(this.title);
 
