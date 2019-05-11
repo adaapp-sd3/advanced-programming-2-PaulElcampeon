@@ -1,3 +1,5 @@
+window.scrollTo(0,1);
+
 const frameDiv = document.getElementById("farm");
 const log = console.log;
 const app = new PIXI.Application();
