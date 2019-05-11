@@ -1,6 +1,11 @@
-window.scrollTo(0,1);
+if(navigator.userAgent.includes("Android") || navigator.userAgent.includes("iPhone")){
+    window.scrollTo(0,1);
+}
 
-const frameDiv = document.getElementById("farm");
+console.log(navigator);
+console.log(navigator.userAgent);
+
+ const frameDiv = document.getElementById("farm");
 const log = console.log;
 const app = new PIXI.Application();
 const canvas = app.view;
